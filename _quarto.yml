@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Lab Notebook"
+  site-url: https://vuillaut.github.io/labnotebook/
+  description: "Personnal blog-like laboratory notebook."
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/vuillaut
+      - icon: twitter
+        href: https://twitter.com/FactChecknMate
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+
+
