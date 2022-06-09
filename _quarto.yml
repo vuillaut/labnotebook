@@ -10,9 +10,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/vuillaut
-      - icon: twitter
-        href: https://twitter.com/FactChecknMate
+        href: https://github.com/vuillaut/labnotebook
 format:
   html:
     theme: flatly
