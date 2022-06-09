@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/post-with-code/index.html",
+      "/posts/coma_aberration_bias/bias_corr_altaz.html",
       "/posts/welcome/index.html"
     ]
   }
