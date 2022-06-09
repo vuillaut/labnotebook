@@ -15,7 +15,7 @@ website:
         href: https://twitter.com/FactChecknMate
 format:
   html:
-    theme: Navbars
+    theme: flatly
     css: styles.css
 
 
