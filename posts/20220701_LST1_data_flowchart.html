@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Thomas Vuillaume">
+<meta name="dcterms.date" content="2022-07-01">
 
-<title>Lab Notebook - Personnal blog-like laboratory notebook.</title>
+<title>Lab Notebook - LST-1 data analysis worflow</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,24 +20,22 @@ ul.task-list{list-style: none;}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -55,40 +55,13 @@ ul.task-list{list-style: none;}
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="Lab Notebook" href="index.xml"></head>
+<link rel="stylesheet" href="../styles.css">
+</head>
 
 <body class="nav-fixed">
 
@@ -96,7 +69,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Lab Notebook</span>
   </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -105,7 +78,7 @@ ul.task-list{list-style: none;}
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">About</a>
+    <a class="nav-link" href="../about.html">About</a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/vuillaut/labnotebook"><i class="bi bi-github" role="img">
@@ -121,15 +94,32 @@ ul.task-list{list-style: none;}
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Personnal blog-like laboratory notebook.</h1>
-                      </div>
+    <div class="quarto-title column-page">
+      <h1 class="title">LST-1 data analysis worflow</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">cta</div>
+                <div class="quarto-category">lst</div>
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Thomas Vuillaume </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 1, 2022</p>
+      </div>
+    </div>
       
     </div>
     
@@ -137,77 +127,67 @@ ul.task-list{list-style: none;}
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
 
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+
+  R0-Protons[R0 Protons \n - node a\n - node b\n - node c]
+  R0-GammaDiffuse[R0 GammaDiffuse \n - node a\n - node b\n - node c]
+  R0-GammaPS[R0 Gamma PS \n - node a\n - node b\n - node c]
+
+  DL1-Protons[DL1 Protons \n - node a\n - node b\n - node c]
+  DL1-GammaDiffuse[DL1 GammaDiffuse \n - node a\n - node b\n - node c]
+  DL1-GammaPS[DL1 Gamma PS \n - node a\n - node b\n - node c]
+
+
+  R0-GammaDiffuse --&gt; |r0_to_dl1| DL1-GammaDiffuse
+  R0-Protons --&gt; |r0_to_dl1| DL1-Protons
+  R0-GammaPS --&gt; |r0_to_dl1| DL1-GammaPS
+
+
+  DL1-GammaDiffuse --&gt; |merge_dl1| DL1-GammaDiffuse-merged[DL1 Gamma Diffuse\nall nodes]
+  DL1-Protons --&gt; |merge_dl1| DL1-Protons-merged[DL1 Protons\nall nodes]
+
+  DL1-GammaDiffuse-merged &amp; DL1-Protons-merged --&gt; train_pipe((train_pipe))
+
+  train_pipe --&gt; models
+
+  models --&gt; DL2-GammaPS
+
+  DL1-GammaPS --&gt; |merge_dl1| DL1-GammaPS-merged[DL1 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+  DL1-GammaPS-merged ----&gt; DL2-GammaPS
+  DL2-GammaPS[DL2 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+
+  DL2-GammaPS --&gt; |dl2_to_irf| IRF-GammaPS
+  IRF-GammaPS[IRF Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+
+  RO-real --&gt; |lstosa| DL1-real -.....-&gt; |lstchain_dl1_to_dl2| DL2-real
+  models .-&gt; |lstchain_dl1_to_dl2| DL2-real
+  DL2-GammaPS .-&gt; |lstchain_create_irf_files| IRF-custom
+  DL2-real &amp; IRF-custom .-&gt; DL3-real
+
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p>Plain lines: done with lstmcpipe Dashed lines: to be done by analyzers</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1656633600000" data-listing-file-modified-sort="1656670072224" data-listing-reading-time-sort="1.115">
-<div class="body">
-<a href="./posts/20220701_LST1_data_flowchart.html">
-<h3 class="no-anchor listing-title">
-LST-1 data analysis worflow
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-
-
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/20220701_LST1_data_flowchart.html">
-<div class="listing-date">
-Jul 1, 2022
-</div>
-<div class="listing-author">
-Thomas Vuillaume
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1654732800000" data-listing-file-modified-sort="1656670072224" data-listing-reading-time-sort="0.465">
-<div class="body">
-<a href="./posts/20220609_coma_aberration_bias/bias_corr_altaz.html">
-<h3 class="no-anchor listing-title">
-Correcting coma aberration bias
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>LST-1 study of the coma aberration bias correction</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/20220609_coma_aberration_bias/bias_corr_altaz.html">
-<div class="listing-date">
-Jun 9, 2022
-</div>
-<div class="listing-author">
-Thomas Vuillaume
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const icon = "";

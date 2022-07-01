@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
-    <lastmod>2022-07-01T09:19:54.927Z</lastmod>
+    <lastmod>2022-07-01T10:08:32.316Z</lastmod>
   </url>
   <url>
-    <loc>https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz.html</loc>
-    <lastmod>2022-07-01T09:19:56.123Z</lastmod>
+    <loc>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</loc>
+    <lastmod>2022-07-01T10:08:33.064Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</loc>
+    <lastmod>2022-07-01T10:08:33.793Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/index.html</loc>
-    <lastmod>2022-07-01T09:19:56.495Z</lastmod>
+    <lastmod>2022-07-01T10:08:34.145Z</lastmod>
   </url>
 </urlset>

@@ -10,11 +10,77 @@
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
 <generator>quarto-0.9.634</generator>
-<lastBuildDate>Thu, 09 Jun 2022 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 01 Jul 2022 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>LST-1 data analysis worflow</title>
+  <dc:creator>Thomas Vuillaume</dc:creator>
+  <link>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+
+  R0-Protons[R0 Protons \n - node a\n - node b\n - node c]
+  R0-GammaDiffuse[R0 GammaDiffuse \n - node a\n - node b\n - node c]
+  R0-GammaPS[R0 Gamma PS \n - node a\n - node b\n - node c]
+
+  DL1-Protons[DL1 Protons \n - node a\n - node b\n - node c]
+  DL1-GammaDiffuse[DL1 GammaDiffuse \n - node a\n - node b\n - node c]
+  DL1-GammaPS[DL1 Gamma PS \n - node a\n - node b\n - node c]
+
+
+  R0-GammaDiffuse --&gt; |r0_to_dl1| DL1-GammaDiffuse
+  R0-Protons --&gt; |r0_to_dl1| DL1-Protons
+  R0-GammaPS --&gt; |r0_to_dl1| DL1-GammaPS
+
+
+  DL1-GammaDiffuse --&gt; |merge_dl1| DL1-GammaDiffuse-merged[DL1 Gamma Diffuse\nall nodes]
+  DL1-Protons --&gt; |merge_dl1| DL1-Protons-merged[DL1 Protons\nall nodes]
+
+  DL1-GammaDiffuse-merged &amp; DL1-Protons-merged --&gt; train_pipe((train_pipe))
+
+  train_pipe --&gt; models
+
+  models --&gt; DL2-GammaPS
+
+  DL1-GammaPS --&gt; |merge_dl1| DL1-GammaPS-merged[DL1 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+  DL1-GammaPS-merged ----&gt; DL2-GammaPS
+  DL2-GammaPS[DL2 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+
+  DL2-GammaPS --&gt; |dl2_to_irf| IRF-GammaPS
+  IRF-GammaPS[IRF Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+
+  RO-real --&gt; |lstosa| DL1-real -.....-&gt; |lstchain_dl1_to_dl2| DL2-real
+  models .-&gt; |lstchain_dl1_to_dl2| DL2-real
+  DL2-GammaPS .-&gt; |lstchain_create_irf_files| IRF-custom
+  DL2-real &amp; IRF-custom .-&gt; DL3-real
+
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p>Plain lines: done with lstmcpipe Dashed lines: to be done by analyzers</p>
+
+
+
+ ]]></description>
+  <guid>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</guid>
+  <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Correcting coma aberration bias</title>
   <dc:creator>Thomas Vuillaume</dc:creator>
-  <link>https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz.html</link>
+  <link>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</link>
   <description><![CDATA[ 
 
 
@@ -105,7 +171,7 @@
 <span id="cb6-11">plot_true_pos(params)<span class="op" style="color: #5E5E5E;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="7">
@@ -131,7 +197,7 @@
 <span id="cb7-18">plot_psf(params)<span class="op" style="color: #5E5E5E;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="8">
@@ -161,7 +227,7 @@
 <span id="cb8-22">plot_theta2(params, bias_correction<span class="op" style="color: #5E5E5E;">=</span><span class="va" style="color: #111111;">True</span>)<span class="op" style="color: #5E5E5E;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="9">
@@ -194,10 +260,10 @@
 <span id="cb9-25">plot_bias_per_alpha(params)<span class="op" style="color: #5E5E5E;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <details>
@@ -230,7 +296,7 @@
 <pre><code>Bright events</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <section id="bright-events-in-quarters" class="level3">
@@ -244,19 +310,19 @@
 <span id="cb14-4">    plot_all(selected_events)</span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-3.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-3.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-4.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-4.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-5.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-5.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -331,10 +397,10 @@
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">params_patched <span class="op" style="color: #5E5E5E;">=</span> patch_events(bright_events)<span class="op" style="color: #5E5E5E;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We can see that a bias is still present.<br>
@@ -357,91 +423,91 @@ Let’s find the effective focal length that minimize the bias.</p>
 <pre><code>28.2 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-3.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-3.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>28.31111111111111 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-5.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-5.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-6.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-6.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>28.42222222222222 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-8.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-8.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-9.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-9.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>28.53333333333333 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-11.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-11.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-12.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-12.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>28.644444444444442 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-14.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-14.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-15.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-15.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>28.755555555555556 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-17.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-17.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-18.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-18.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>28.866666666666667 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-20.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-20.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-21.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-21.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>28.977777777777778 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-23.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-23.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-24.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-24.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>29.08888888888889 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-26.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-26.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-27.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-27.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>29.2 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-29.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-29.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-30.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-30.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We can find the effective focal length that minimize the bias:</p>
@@ -462,7 +528,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 <pre><code>The focal length that minimize the bias: 28.756 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Let’s see the results with that focal length:</p>
@@ -480,19 +546,19 @@ Let’s find the effective focal length that minimize the bias.</p>
 <span id="cb32-4">    plot_all(selected_events)</span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-3.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-3.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-4.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-4.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-5.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-5.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The alpha-dependence is now gone</p>
@@ -527,7 +593,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 <pre><code>(0.0, 0.4)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -598,7 +664,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1">analyis(filename)</span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 
@@ -606,7 +672,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 </section>
 
  ]]></description>
-  <guid>https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz.html</guid>
+  <guid>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</guid>
   <pubDate>Thu, 09 Jun 2022 00:00:00 GMT</pubDate>
 </item>
 </channel>
