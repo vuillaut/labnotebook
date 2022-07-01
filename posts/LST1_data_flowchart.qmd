@@ -1,3 +1,18 @@
+---
+title: "LST-1 data analysis worflow"
+author: "Thomas Vuillaume"
+date: "July 1, 2022"
+format:
+  html:
+    code-fold: true
+    theme: minty
+    categories: [cta, lst, analysis]
+    page-layout: full
+---
+
+
+```{mermaid}
+
 flowchart LR
 
   R0-Protons[R0 Protons \n - node a\n - node b\n - node c]
@@ -30,7 +45,12 @@ flowchart LR
   DL2-GammaPS --> |dl2_to_irf| IRF-GammaPS
   IRF-GammaPS[IRF Gamma PS \n - node a merged\n - node b merged\n - node c merged]
 
-  RO-real --> |lstosa| DL1-real -.....-> DL2-real
-  models .-> DL2-real
+  RO-real --> |lstosa| DL1-real -.....-> |lstchain_dl1_to_dl2| DL2-real
+  models .-> |lstchain_dl1_to_dl2| DL2-real
   DL2-GammaPS .-> |lstchain_create_irf_files| IRF-custom
   DL2-real & IRF-custom .-> DL3-real
+
+```
+
+Plain lines: done with lstmcpipe
+Dashed lines: to be done by analyzers
