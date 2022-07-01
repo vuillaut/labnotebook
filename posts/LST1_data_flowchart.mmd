@@ -1,0 +1,36 @@
+flowchart LR
+
+  R0-Protons[R0 Protons \n - node a\n - node b\n - node c]
+  R0-GammaDiffuse[R0 GammaDiffuse \n - node a\n - node b\n - node c]
+  R0-GammaPS[R0 Gamma PS \n - node a\n - node b\n - node c]
+
+  DL1-Protons[DL1 Protons \n - node a\n - node b\n - node c]
+  DL1-GammaDiffuse[DL1 GammaDiffuse \n - node a\n - node b\n - node c]
+  DL1-GammaPS[DL1 Gamma PS \n - node a\n - node b\n - node c]
+
+
+  R0-GammaDiffuse --> |r0_to_dl1| DL1-GammaDiffuse
+  R0-Protons --> |r0_to_dl1| DL1-Protons
+  R0-GammaPS --> |r0_to_dl1| DL1-GammaPS
+
+
+  DL1-GammaDiffuse --> |merge_dl1| DL1-GammaDiffuse-merged[DL1 Gamma Diffuse\nall nodes]
+  DL1-Protons --> |merge_dl1| DL1-Protons-merged[DL1 Protons\nall nodes]
+
+  DL1-GammaDiffuse-merged & DL1-Protons-merged --> train_pipe((train_pipe))
+
+  train_pipe --> models
+
+  models --> DL2-GammaPS
+
+  DL1-GammaPS --> |merge_dl1| DL1-GammaPS-merged[DL1 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+  DL1-GammaPS-merged ----> DL2-GammaPS
+  DL2-GammaPS[DL2 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+
+  DL2-GammaPS --> |dl2_to_irf| IRF-GammaPS
+  IRF-GammaPS[IRF Gamma PS \n - node a merged\n - node b merged\n - node c merged]
+
+  RO-real --> |lstosa| DL1-real -.....-> DL2-real
+  models .-> DL2-real
+  DL2-GammaPS .-> |lstchain_create_irf_files| IRF-custom
+  DL2-real & IRF-custom .-> DL3-real
