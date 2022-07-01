@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vuillaut.github.io/labnotebook/index.html</loc>
-    <lastmod>2022-06-09T17:58:08.131Z</lastmod>
-  </url>
-  <url>
     <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
-    <lastmod>2022-06-09T17:58:08.867Z</lastmod>
+    <lastmod>2022-07-01T09:19:54.927Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/coma_aberration_bias/bias_corr_altaz.html</loc>
-    <lastmod>2022-06-09T17:58:09.587Z</lastmod>
+    <lastmod>2022-07-01T09:19:56.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/index.html</loc>
+    <lastmod>2022-07-01T09:19:56.495Z</lastmod>
   </url>
 </urlset>

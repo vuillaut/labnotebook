@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Personnal blog-like laboratory notebook.",
-    "section": "",
-    "text": "LST-1 study of the coma aberration bias correction\n\n\n\n\n\n\nJun 9, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -40,5 +33,12 @@
     "title": "Correcting coma aberration bias",
     "section": "Testing the same correction on point source gammas",
     "text": "Testing the same correction on point source gammas\n\nCode\nfilename = 'dl2_gamma_20deg_180deg_off0.4deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'\n\ndef analyis(filename):\n    params = read_table(filename, path=dl2_params_lstcam_key)\n    add_params(params)\n    # bright_events = params[(params['intensity']>5000)]\n    bright_events = params[(params['intensity']>50) & ((params['gammaness']>0.7))]\n    bright_events_corr = patch_events(bright_events, true_focal_length=29.04*u.m, plot=False)\n\n\n    fig, axes = plt.subplots(1, 3, figsize=(20,5))\n    \n    plot_psf(bright_events_corr, ax=axes[0])\n\n    opt=dict(bins=50,  histtype='step', range=(0, 0.1))\n    ctaplot.plot_theta2(bright_events['mc_alt'].quantity,\n                       bright_events['reco_alt'].quantity,\n                       bright_events['mc_az'].quantity,\n                       bright_events['reco_az'].quantity,\n                        ax=axes[1],\n                        label='no bias correction',\n                        **opt\n                       )\n    \n    ctaplot.plot_theta2(bright_events_corr['mc_alt'].quantity,\n                   bright_events_corr['reco_alt'].quantity,\n                   bright_events_corr['mc_az'].quantity,\n                   bright_events_corr['reco_az'].quantity,\n                        ax=axes[1],\n                    label='bias corrected',\n                        **opt\n                   )\n    axes[1].legend()\n    \n    ctaplot.plot_angular_resolution_per_energy(bright_events['mc_alt'].quantity,\n                                           bright_events['reco_alt'].quantity,\n                                           bright_events['mc_az'].quantity,\n                                           bright_events['reco_az'].quantity,\n                                           bright_events['reco_energy'].quantity,\n                                                  ax=axes[-1],\n                                             label='no bias correction',  \n                                              )\n\n\n    ctaplot.plot_angular_resolution_per_energy(bright_events_corr['mc_alt'].quantity,\n                                               bright_events_corr['reco_alt'].quantity,\n                                               bright_events_corr['mc_az'].quantity,\n                                               bright_events_corr['reco_az'].quantity,\n                                               bright_events_corr['reco_energy'].quantity,\n                                               ax=axes[-1],\n                                               label='bias corrected',\n                                               # ls='--'\n                                              )\n\n    ctaplot.plot_angular_resolution_cta_requirement('north', color='black', ax=axes[-1])\n    axes[-1].set_ylim(0, 0.4)\n\n\n\nCode\nanalyis(filename)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Personnal blog-like laboratory notebook.",
+    "section": "",
+    "text": "LST-1 study of the coma aberration bias correction\n\n\n\n\n\n\nJun 9, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\nNo matching items"
   }
 ]

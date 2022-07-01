@@ -9,7 +9,7 @@
 <link>https://vuillaut.github.io/labnotebook/index.html</link>
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
-<generator>quarto-0.9.560</generator>
+<generator>quarto-0.9.634</generator>
 <lastBuildDate>Thu, 09 Jun 2022 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Correcting coma aberration bias</title>
