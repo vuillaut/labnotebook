@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.634">
+<meta name="generator" content="quarto-1.0.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -99,7 +99,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -203,6 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lstchain.io.io <span class="im">import</span> dl2_params_lstcam_key</span>
@@ -219,6 +220,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>ctaplot.set_style(<span class="st">'notebook'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading DL2 parameters</span></span>
@@ -226,6 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">'dl2_gamma-diffuse_20deg_180deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> read_table(filename, path<span class="op">=</span>dl2_params_lstcam_key)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
@@ -244,6 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody></table></div>
 </div>
 </div>
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_params(events):</span>
@@ -268,10 +273,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                                                                events[<span class="st">'mc_alt'</span>].quantity, events[<span class="st">'mc_az'</span>].quantity)</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    events[<span class="st">'alpha'</span>] <span class="op">=</span> np.arctan2(events[<span class="st">'src_y'</span>], events[<span class="st">'src_x'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>add_params(params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
@@ -383,6 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bias_corr_altaz_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
 </div>
 </div>
+<div class="cell" data-execution_count="10">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select bright events to see the effect</span></span>
@@ -391,6 +400,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># selected_events = bright_events[(bright_events['src_x']&gt;0) &amp; (bright_events['src_y']&gt;0)]</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>selected_events <span class="op">=</span> bright_events[(<span class="op">-</span>np.pi<span class="op">/</span><span class="dv">4</span><span class="op">&lt;</span>bright_events[<span class="st">'alpha'</span>])<span class="op">&amp;</span>(bright_events[<span class="st">'alpha'</span>]<span class="op">&lt;</span>np.pi<span class="op">/</span><span class="fl">4.</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_all(events):</span>
@@ -403,6 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="12">
 <details>
 <summary>Code</summary>
@@ -446,10 +458,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="correcting-the-bias" class="level2">
 <h2 class="anchored" data-anchor-id="correcting-the-bias">Correcting the bias</h2>
 <p>We can reconstruct the source position in the sky with a different focal length. To visualize the bias, we can plot it as a function of alpha, the angle between the event position and the X-axis</p>
+<div class="cell" data-execution_count="14">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lstchain.reco.utils <span class="im">import</span> reco_source_position_sky</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="15">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> patch_events(events, true_focal_length<span class="op">=</span><span class="fl">29.04</span><span class="op">*</span>u.m, plot<span class="op">=</span><span class="va">True</span>):</span>
@@ -508,6 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> events_corr</span>
 <span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="16">
 <details>
 <summary>Code</summary>
@@ -649,11 +665,13 @@ Let’s find the effective focal length that minimize the bias.</p>
 </div>
 </div>
 <p>Let’s see the results with that focal length:</p>
+<div class="cell" data-execution_count="19">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>params_patched <span class="op">=</span> patch_events(bright_events, focal_lengths[np.argmin(bias_alt)], plot<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>add_params(params_patched)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="20">
 <details>
 <summary>Code</summary>
@@ -682,11 +700,13 @@ Let’s find the effective focal length that minimize the bias.</p>
 </section>
 <section id="angular-resolution-before-and-after" class="level2">
 <h2 class="anchored" data-anchor-id="angular-resolution-before-and-after">Angular resolution before and after</h2>
+<div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>selected_events <span class="op">=</span> params[(params[<span class="st">'intensity'</span>]<span class="op">&gt;</span><span class="dv">100</span>) <span class="op">&amp;</span> (params[<span class="st">'gammaness'</span>]<span class="op">&gt;</span><span class="fl">0.4</span>)]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>selected_corr <span class="op">=</span> patch_events(selected_events, plot<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="22">
 <details>
 <summary>Code</summary>
@@ -716,6 +736,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 </section>
 <section id="testing-the-same-correction-on-point-source-gammas" class="level2">
 <h2 class="anchored" data-anchor-id="testing-the-same-correction-on-point-source-gammas">Testing the same correction on point source gammas</h2>
+<div class="cell" data-execution_count="23">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">'dl2_gamma_20deg_180deg_off0.4deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'</span></span>
@@ -775,6 +796,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 <span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_angular_resolution_cta_requirement(<span class="st">'north'</span>, color<span class="op">=</span><span class="st">'black'</span>, ax<span class="op">=</span>axes[<span class="op">-</span><span class="dv">1</span>])</span>
 <span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>    axes[<span class="op">-</span><span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="24">
 <details>
 <summary>Code</summary>
@@ -791,6 +813,24 @@ Let’s find the effective focal length that minimize the bias.</p>
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

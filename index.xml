@@ -9,8 +9,44 @@
 <link>https://vuillaut.github.io/labnotebook/index.html</link>
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
-<generator>quarto-0.9.634</generator>
-<lastBuildDate>Fri, 01 Jul 2022 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.0.35</generator>
+<lastBuildDate>Fri, 22 Jul 2022 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>conda must config</title>
+  <dc:creator>Thomas Vuillaume</dc:creator>
+  <link>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="use-shared-conda" class="level1">
+<h1>Use shared conda</h1>
+<pre><code>__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
+eval "$__conda_setup"</code></pre>
+</section>
+<section id="setup-config" class="level1">
+<h1>Setup config</h1>
+<pre><code>conda config</code></pre>
+<p>Will generate a <code>.condarc</code> file in the home directory.</p>
+<p>Edit this file:</p>
+<pre><code>envs_dirs:
+  - /mustfs/CONTAINERS/conda/glearn/envs/
+
+pkgs_dirs:
+  - /mustfs/CONTAINERS/conda/glearn/pkgs/
+
+channels:
+  - conda-forge
+  - defaults</code></pre>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</guid>
+  <pubDate>Fri, 22 Jul 2022 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>LST-1 data analysis worflow</title>
   <dc:creator>Thomas Vuillaume</dc:creator>
@@ -87,6 +123,7 @@
 
 
 
+<div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;">from</span> lstchain.io.io <span class="im" style="color: #00769E;">import</span> dl2_params_lstcam_key</span>
@@ -103,6 +140,8 @@
 <span id="cb1-12"></span>
 <span id="cb1-13">ctaplot.set_style(<span class="st" style="color: #20794D;">'notebook'</span>)</span></code></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;"># Reading DL2 parameters</span></span>
@@ -110,6 +149,7 @@
 <span id="cb2-3">filename <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">'dl2_gamma-diffuse_20deg_180deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'</span></span>
 <span id="cb2-4">params <span class="op" style="color: #5E5E5E;">=</span> read_table(filename, path<span class="op" style="color: #5E5E5E;">=</span>dl2_params_lstcam_key)</span></code></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
@@ -128,6 +168,7 @@
 </tbody></table></div>
 </div>
 </div>
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="kw" style="color: #003B4F;">def</span> add_params(events):</span>
@@ -152,10 +193,13 @@
 <span id="cb4-20">                                                                events[<span class="st" style="color: #20794D;">'mc_alt'</span>].quantity, events[<span class="st" style="color: #20794D;">'mc_az'</span>].quantity)</span>
 <span id="cb4-21">    events[<span class="st" style="color: #20794D;">'alpha'</span>] <span class="op" style="color: #5E5E5E;">=</span> np.arctan2(events[<span class="st" style="color: #20794D;">'src_y'</span>], events[<span class="st" style="color: #20794D;">'src_x'</span>])</span></code></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">add_params(params)</span></code></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
@@ -267,6 +311,7 @@
 <p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
 </div>
 </div>
+<div class="cell" data-execution_count="10">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;"># Select bright events to see the effect</span></span>
@@ -275,6 +320,8 @@
 <span id="cb10-4"><span class="co" style="color: #5E5E5E;"># selected_events = bright_events[(bright_events['src_x']&gt;0) &amp; (bright_events['src_y']&gt;0)]</span></span>
 <span id="cb10-5">selected_events <span class="op" style="color: #5E5E5E;">=</span> bright_events[(<span class="op" style="color: #5E5E5E;">-</span>np.pi<span class="op" style="color: #5E5E5E;">/</span><span class="dv" style="color: #AD0000;">4</span><span class="op" style="color: #5E5E5E;">&lt;</span>bright_events[<span class="st" style="color: #20794D;">'alpha'</span>])<span class="op" style="color: #5E5E5E;">&amp;</span>(bright_events[<span class="st" style="color: #20794D;">'alpha'</span>]<span class="op" style="color: #5E5E5E;">&lt;</span>np.pi<span class="op" style="color: #5E5E5E;">/</span><span class="fl" style="color: #AD0000;">4.</span>)]</span></code></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="11">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="kw" style="color: #003B4F;">def</span> plot_all(events):</span>
@@ -287,6 +334,7 @@
 <span id="cb11-8">    plt.tight_layout()</span>
 <span id="cb11-9">    plt.show()</span></code></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="12">
 <details>
 <summary>Code</summary>
@@ -330,10 +378,13 @@
 <section id="correcting-the-bias" class="level2">
 <h2 class="anchored" data-anchor-id="correcting-the-bias">Correcting the bias</h2>
 <p>We can reconstruct the source position in the sky with a different focal length. To visualize the bias, we can plot it as a function of alpha, the angle between the event position and the X-axis</p>
+<div class="cell" data-execution_count="14">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="im" style="color: #00769E;">from</span> lstchain.reco.utils <span class="im" style="color: #00769E;">import</span> reco_source_position_sky</span></code></pre></div>
 </details>
+</div>
+<div class="cell" data-execution_count="15">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="kw" style="color: #003B4F;">def</span> patch_events(events, true_focal_length<span class="op" style="color: #5E5E5E;">=</span><span class="fl" style="color: #AD0000;">29.04</span><span class="op" style="color: #5E5E5E;">*</span>u.m, plot<span class="op" style="color: #5E5E5E;">=</span><span class="va" style="color: #111111;">True</span>):</span>
@@ -392,6 +443,7 @@
 <span id="cb16-54">    <span class="cf" style="color: #003B4F;">return</span> events_corr</span>
 <span id="cb16-55">    </span></code></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="16">
 <details>
 <summary>Code</summary>
@@ -533,11 +585,13 @@ Let’s find the effective focal length that minimize the bias.</p>
 </div>
 </div>
 <p>Let’s see the results with that focal length:</p>
+<div class="cell" data-execution_count="19">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1">params_patched <span class="op" style="color: #5E5E5E;">=</span> patch_events(bright_events, focal_lengths[np.argmin(bias_alt)], plot<span class="op" style="color: #5E5E5E;">=</span><span class="va" style="color: #111111;">False</span>)<span class="op" style="color: #5E5E5E;">;</span></span>
 <span id="cb31-2">add_params(params_patched)</span></code></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="20">
 <details>
 <summary>Code</summary>
@@ -566,11 +620,13 @@ Let’s find the effective focal length that minimize the bias.</p>
 </section>
 <section id="angular-resolution-before-and-after" class="level2">
 <h2 class="anchored" data-anchor-id="angular-resolution-before-and-after">Angular resolution before and after</h2>
+<div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1">selected_events <span class="op" style="color: #5E5E5E;">=</span> params[(params[<span class="st" style="color: #20794D;">'intensity'</span>]<span class="op" style="color: #5E5E5E;">&gt;</span><span class="dv" style="color: #AD0000;">100</span>) <span class="op" style="color: #5E5E5E;">&amp;</span> (params[<span class="st" style="color: #20794D;">'gammaness'</span>]<span class="op" style="color: #5E5E5E;">&gt;</span><span class="fl" style="color: #AD0000;">0.4</span>)]</span>
 <span id="cb33-2">selected_corr <span class="op" style="color: #5E5E5E;">=</span> patch_events(selected_events, plot<span class="op" style="color: #5E5E5E;">=</span><span class="va" style="color: #111111;">False</span>)</span></code></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="22">
 <details>
 <summary>Code</summary>
@@ -600,6 +656,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 </section>
 <section id="testing-the-same-correction-on-point-source-gammas" class="level2">
 <h2 class="anchored" data-anchor-id="testing-the-same-correction-on-point-source-gammas">Testing the same correction on point source gammas</h2>
+<div class="cell" data-execution_count="23">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1">filename <span class="op" style="color: #5E5E5E;">=</span> <span class="st" style="color: #20794D;">'dl2_gamma_20deg_180deg_off0.4deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'</span></span>
@@ -659,6 +716,7 @@ Let’s find the effective focal length that minimize the bias.</p>
 <span id="cb36-55">    ctaplot.plot_angular_resolution_cta_requirement(<span class="st" style="color: #20794D;">'north'</span>, color<span class="op" style="color: #5E5E5E;">=</span><span class="st" style="color: #20794D;">'black'</span>, ax<span class="op" style="color: #5E5E5E;">=</span>axes[<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>])</span>
 <span id="cb36-56">    axes[<span class="op" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>].set_ylim(<span class="dv" style="color: #AD0000;">0</span>, <span class="fl" style="color: #AD0000;">0.4</span>)</span></code></pre></div>
 </details>
+</div>
 <div class="cell" data-execution_count="24">
 <details>
 <summary>Code</summary>

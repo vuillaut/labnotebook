@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2022-07-22_conda_must_config.html",
       "/posts/20220701_LST1_data_flowchart.html",
       "/posts/20220609_coma_aberration_bias/bias_corr_altaz.html"
     ]

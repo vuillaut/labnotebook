@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
-    <lastmod>2022-07-01T10:11:22.336Z</lastmod>
+    <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</loc>
+    <lastmod>2022-07-22T09:42:21.897Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</loc>
-    <lastmod>2022-07-01T10:11:23.040Z</lastmod>
+    <lastmod>2022-07-22T09:42:23.405Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</loc>
-    <lastmod>2022-07-01T10:11:23.728Z</lastmod>
+    <lastmod>2022-07-22T09:42:24.397Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/template_note.html</loc>
+    <lastmod>2022-07-22T09:42:24.781Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
+    <lastmod>2022-07-22T09:42:25.117Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/index.html</loc>
-    <lastmod>2022-07-01T10:11:24.060Z</lastmod>
+    <lastmod>2022-07-22T09:42:25.493Z</lastmod>
   </url>
 </urlset>
