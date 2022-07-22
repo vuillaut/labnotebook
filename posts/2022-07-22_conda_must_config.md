@@ -26,7 +26,7 @@ conda config
 
 Will generate a `.condarc` file in the home directory.
 
-Edit this file:
+Edit this file to add the following:
 
 ```
 envs_dirs:
@@ -39,3 +39,6 @@ channels:
   - conda-forge
   - defaults
 ```
+
+Changing `pkgs_dirs` and `envs_dirs` is necessary to avoid hitting disk quotas in your own home directory.
+Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues.
