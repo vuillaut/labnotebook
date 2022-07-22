@@ -4,7 +4,7 @@
     "href": "posts/2022-07-22_conda_must_config.html",
     "title": "conda must config",
     "section": "",
-    "text": "Setup config\nconda config\nWill generate a .condarc file in the home directory.\nEdit this file:\nenvs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/envs/\n\npkgs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/pkgs/\n\nchannels:\n  - conda-forge\n  - defaults"
+    "text": "Setup config\nconda config\nWill generate a .condarc file in the home directory.\nEdit this file to add the following:\nenvs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/envs/\n\npkgs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/pkgs/\n\nchannels:\n  - conda-forge\n  - defaults\nChanging pkgs_dirs and envs_dirs is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues."
   },
   {
     "objectID": "posts/20220701_LST1_data_flowchart.html",

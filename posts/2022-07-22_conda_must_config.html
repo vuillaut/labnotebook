@@ -135,7 +135,7 @@ eval "$__conda_setup"</code></pre>
 <h1>Setup config</h1>
 <pre><code>conda config</code></pre>
 <p>Will generate a <code>.condarc</code> file in the home directory.</p>
-<p>Edit this file:</p>
+<p>Edit this file to add the following:</p>
 <pre><code>envs_dirs:
   - /mustfs/CONTAINERS/conda/glearn/envs/
 
@@ -145,6 +145,7 @@ pkgs_dirs:
 channels:
   - conda-forge
   - defaults</code></pre>
+<p>Changing <code>pkgs_dirs</code> and <code>envs_dirs</code> is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues.</p>
 
 
 </section>
