@@ -1,5 +1,5 @@
 ---
-title: ""
+title: $TITLE
 author: "Thomas Vuillaume"
 date: $DATE
 format:
