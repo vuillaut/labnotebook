@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</loc>
-    <lastmod>2022-07-22T13:30:14.598Z</lastmod>
+    <lastmod>2022-07-27T09:25:36.946Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</loc>
-    <lastmod>2022-07-22T13:30:15.542Z</lastmod>
+    <lastmod>2022-07-27T09:25:37.638Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</loc>
-    <lastmod>2022-07-22T13:30:16.550Z</lastmod>
+    <lastmod>2022-07-27T09:25:38.334Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-27_analyse_LST-1_data.html</loc>
+    <lastmod>2022-07-27T09:25:38.702Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/template_note.html</loc>
-    <lastmod>2022-07-22T13:30:16.958Z</lastmod>
+    <lastmod>2022-07-27T09:25:39.242Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
-    <lastmod>2022-07-22T13:30:17.322Z</lastmod>
+    <lastmod>2022-07-27T09:25:39.750Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/index.html</loc>
-    <lastmod>2022-07-22T13:30:17.742Z</lastmod>
+    <lastmod>2022-07-27T09:25:40.278Z</lastmod>
   </url>
 </urlset>

@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thomas Vuillaume">
-<meta name="dcterms.date" content="2022-07-22">
+<meta name="dcterms.date" content="2022-07-27">
 
-<title>Lab Notebook - conda must config</title>
+<title>Lab Notebook - analyse LST-1 data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,7 +92,7 @@ ul.task-list{list-style: none;}
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page">
-      <h1 class="title">conda must config</h1>
+      <h1 class="title">analyse LST-1 data</h1>
                       </div>
   </div>
     
@@ -109,7 +109,7 @@ ul.task-list{list-style: none;}
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 22, 2022</p>
+        <p class="date">July 27, 2022</p>
       </div>
     </div>
       
@@ -126,28 +126,48 @@ ul.task-list{list-style: none;}
 
 
 
-<section id="use-shared-conda" class="level1">
-<h1>Use shared conda</h1>
-<pre><code>__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
-eval "$__conda_setup"</code></pre>
+<section id="how-to-analyse-lst-1-data" class="level1">
+<h1>How to analyse LST-1 data</h1>
+<section id="get-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-data">Get the data</h2>
+<p>From the LST wiki page, or the elogs, find the runs you want to analyse. Find the corresponding DL1 files on the cluster, probably under <code>/fefs/aswg/data/real/DL1/.../</code>. These files have been automatically produced by LSTOSA, there might be several versions, corresponding to different lstchain versions. In doubt, use the last one.</p>
 </section>
-<section id="setup-config" class="level1">
-<h1>Setup config</h1>
-<pre><code>conda config</code></pre>
-<p>Will generate a <code>.condarc</code> file in the home directory.</p>
-<p>Edit this file to add the following:</p>
-<pre><code>envs_dirs:
-  - /mustfs/CONTAINERS/conda/glearn/envs/
+<section id="select-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="select-the-data">Select the data</h2>
+<p>You might want to sub-select the runs to use, following https://indico.cta-observatory.org/event/3984/</p>
+</section>
+<section id="corresponding-mc-production" class="level2">
+<h2 class="anchored" data-anchor-id="corresponding-mc-production">Corresponding MC production</h2>
+<p>The AllSky MC production follows sources declinations, as explained in: - https://indico.cta-observatory.org/event/4061/contributions/33409/attachments/21211/29956/Crab_analysis_20220404.pdf - ??</p>
+<p>Random forests models are trained per declination and then used on the MC test data to produce IRFs on all test pointing directions.</p>
+</section>
+<section id="produce-your-dl2-files" class="level2">
+<h2 class="anchored" data-anchor-id="produce-your-dl2-files">Produce your DL2 files</h2>
+<p>From the DL1 files, you will need to produce the DL2 files using the right RF model.</p>
+<section id="standard-rf-models-and-irfs" class="level3">
+<h3 class="anchored" data-anchor-id="standard-rf-models-and-irfs">Standard RF models and IRFs</h3>
+<p>If you are analysing an extragalactic source, the standard models trained for the closest declination of your source is likely enough. You can find these models under</p>
+<pre><code>/fefs/aswg/data/models/AllSky/.../</code></pre>
+<p>Apply the model to the DL1 files using lstchain <code>lstchain_dl1_to_dl2</code></p>
+<p>In this case, you can also use the corresponding standard IRFSs, under <code>/fefs/aswg/data/IRF/AllSky/.../</code>.</p>
+</section>
+<section id="custom-rf-models-and-irfs" class="level3">
+<h3 class="anchored" data-anchor-id="custom-rf-models-and-irfs">Custom RF models and IRFs</h3>
+<p>If your source needs MC tuning (e.g.&nbsp;for strong NSB / galactic sources): 1. please check that a fitting custom training does not exist from <a href="https://cta-observatory.github.io/lstmcpipe/productions.html">https://cta-observatory.github.io/lstmcpipe/productions.html</a> 2. if not, you may request a custom training using lstmcpipe pull-requests: <a href="https://cta-observatory.github.io/lstmcpipe/index.html#requesting-a-mc-analysis">https://cta-observatory.github.io/lstmcpipe/index.html#requesting-a-mc-analysis</a></p>
+<p>The lstchain config must be produced using <code>lstchain_tune_nsb</code> on the DL1 files you want to analyse.</p>
+<p>The lstmcpipe config must be produced following: <a href="https://cta-observatory.github.io/lstmcpipe/pipeline.html#allsky-production-pipeline">https://cta-observatory.github.io/lstmcpipe/pipeline.html#allsky-production-pipeline</a></p>
+</section>
+</section>
+<section id="produce-your-dl3-files" class="level2">
+<h2 class="anchored" data-anchor-id="produce-your-dl3-files">Produce your DL3 files</h2>
+<p><code>lstchain_create_dl3_file</code></p>
+</section>
+<section id="high-level-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="high-level-analysis">High-level analysis</h2>
+<p>Use gammapy to analyse the DL3 files using the corresponding IRFs.</p>
 
-pkgs_dirs:
-  - /mustfs/CONTAINERS/conda/glearn/pkgs/
 
-channels:
-  - conda-forge
-  - defaults</code></pre>
-<p>Changing <code>pkgs_dirs</code> and <code>envs_dirs</code> is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues.</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->
