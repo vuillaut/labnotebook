@@ -32,7 +32,7 @@
 </section>
 <section id="corresponding-mc-production" class="level2">
 <h2 class="anchored" data-anchor-id="corresponding-mc-production">Corresponding MC production</h2>
-<p>The AllSky MC production follows sources declinations, as explained in: - https://indico.cta-observatory.org/event/4061/contributions/33409/attachments/21211/29956/Crab_analysis_20220404.pdf - ??</p>
+<p>The AllSky MC production follows sources declinations, as explained in: - <a href="https://indico.cta-observatory.org/event/4061/contributions/33409/attachments/21211/29956/Crab_analysis_20220404.pdf">https://indico.cta-observatory.org/event/4061/contributions/33409/attachments/21211/29956/Crab_analysis_20220404.pdf</a> - ??</p>
 <p>Random forests models are trained per declination and then used on the MC test data to produce IRFs on all test pointing directions.</p>
 </section>
 <section id="produce-your-dl2-files" class="level2">
