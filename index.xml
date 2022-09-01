@@ -9,8 +9,40 @@
 <link>https://vuillaut.github.io/labnotebook/index.html</link>
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
-<generator>quarto-1.0.37</generator>
-<lastBuildDate>Wed, 27 Jul 2022 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.1.168</generator>
+<lastBuildDate>Thu, 01 Sep 2022 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>ctapipe generate R1/DL0 HDF5</title>
+  <dc:creator>Thomas Vuillaume</dc:creator>
+  <link>https://vuillaut.github.io/labnotebook/posts/2022-09-01_ctapipe_hdf5_r0.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="ctapipe-generate-hdf5-with-r1dl0-waveforms" class="level1">
+<h1>ctapipe generate HDF5 with R1/DL0 waveforms</h1>
+<pre><code>ctapipe-quickstart</code></pre>
+<p>will generate a base config</p>
+<p>Edit the config with:</p>
+<pre><code>  write_showers: true # store DL2 stereo geometry
+  write_raw_waveforms: true # write R0 waveforms
+  write_waveforms: true # write R1 waveforms
+  transform_waveform: true
+  waveform_dtype: "uint16"
+  waveform_offset: 400
+  waveform_scale: 80</code></pre>
+<p>The waveforms are scaled to fit in <code>uint16</code> and scaled back at reading.</p>
+<p>Then run:</p>
+<pre><code>ctapipe-process --config base_config.yaml --input ../Simtel/prod5/gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.simtel.zst --output gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.h5</code></pre>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://vuillaut.github.io/labnotebook/posts/2022-09-01_ctapipe_hdf5_r0.html</guid>
+  <pubDate>Thu, 01 Sep 2022 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>analyse LST-1 data</title>
   <dc:creator>Thomas Vuillaume</dc:creator>

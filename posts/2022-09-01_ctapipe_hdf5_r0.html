@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thomas Vuillaume">
-<meta name="dcterms.date" content="2022-07-27">
+<meta name="dcterms.date" content="2022-09-01">
 
-<title>Lab Notebook - analyse LST-1 data</title>
+<title>Lab Notebook - ctapipe generate R1/DL0 HDF5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page">
-      <h1 class="title">analyse LST-1 data</h1>
+      <h1 class="title">ctapipe generate R1/DL0 HDF5</h1>
                       </div>
   </div>
     
@@ -116,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 27, 2022</p>
+        <p class="date">September 1, 2022</p>
       </div>
     </div>
       
@@ -133,48 +133,23 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="how-to-analyse-lst-1-data" class="level1">
-<h1>How to analyse LST-1 data</h1>
-<section id="get-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="get-the-data">Get the data</h2>
-<p>From the LST wiki page, or the elogs, find the runs you want to analyse. Find the corresponding DL1 files on the cluster, probably under <code>/fefs/aswg/data/real/DL1/.../</code>. These files have been automatically produced by LSTOSA, there might be several versions, corresponding to different lstchain versions. In doubt, use the last one.</p>
-</section>
-<section id="select-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="select-the-data">Select the data</h2>
-<p>You might want to sub-select the runs to use, following https://indico.cta-observatory.org/event/3984/</p>
-</section>
-<section id="corresponding-mc-production" class="level2">
-<h2 class="anchored" data-anchor-id="corresponding-mc-production">Corresponding MC production</h2>
-<p>The AllSky MC production follows sources declinations, as explained in: - <a href="https://indico.cta-observatory.org/event/4061/contributions/33409/attachments/21211/29956/Crab_analysis_20220404.pdf">https://indico.cta-observatory.org/event/4061/contributions/33409/attachments/21211/29956/Crab_analysis_20220404.pdf</a> - ??</p>
-<p>Random forests models are trained per declination and then used on the MC test data to produce IRFs on all test pointing directions.</p>
-</section>
-<section id="produce-your-dl2-files" class="level2">
-<h2 class="anchored" data-anchor-id="produce-your-dl2-files">Produce your DL2 files</h2>
-<p>From the DL1 files, you will need to produce the DL2 files using the right RF model.</p>
-<section id="standard-rf-models-and-irfs" class="level3">
-<h3 class="anchored" data-anchor-id="standard-rf-models-and-irfs">Standard RF models and IRFs</h3>
-<p>If you are analysing an extragalactic source, the standard models trained for the closest declination of your source is likely enough. You can find these models under</p>
-<pre><code>/fefs/aswg/data/models/AllSky/.../</code></pre>
-<p>Apply the model to the DL1 files using lstchain <code>lstchain_dl1_to_dl2</code></p>
-<p>In this case, you can also use the corresponding standard IRFSs, under <code>/fefs/aswg/data/IRF/AllSky/.../</code>.</p>
-</section>
-<section id="custom-rf-models-and-irfs" class="level3">
-<h3 class="anchored" data-anchor-id="custom-rf-models-and-irfs">Custom RF models and IRFs</h3>
-<p>If your source needs MC tuning (e.g.&nbsp;for strong NSB / galactic sources): 1. please check that a fitting custom training does not exist from <a href="https://cta-observatory.github.io/lstmcpipe/productions.html">https://cta-observatory.github.io/lstmcpipe/productions.html</a> 2. if not, you may request a custom training using lstmcpipe pull-requests: <a href="https://cta-observatory.github.io/lstmcpipe/index.html#requesting-a-mc-analysis">https://cta-observatory.github.io/lstmcpipe/index.html#requesting-a-mc-analysis</a></p>
-<p>The lstchain config must be produced using <code>lstchain_tune_nsb</code> on the DL1 files you want to analyse.</p>
-<p>The lstmcpipe config must be produced following: <a href="https://cta-observatory.github.io/lstmcpipe/pipeline.html#allsky-production-pipeline">https://cta-observatory.github.io/lstmcpipe/pipeline.html#allsky-production-pipeline</a></p>
-</section>
-</section>
-<section id="produce-your-dl3-files" class="level2">
-<h2 class="anchored" data-anchor-id="produce-your-dl3-files">Produce your DL3 files</h2>
-<p><code>lstchain_create_dl3_file</code></p>
-</section>
-<section id="high-level-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="high-level-analysis">High-level analysis</h2>
-<p>Use gammapy to analyse the DL3 files using the corresponding IRFs.</p>
+<section id="ctapipe-generate-hdf5-with-r1dl0-waveforms" class="level1">
+<h1>ctapipe generate HDF5 with R1/DL0 waveforms</h1>
+<pre><code>ctapipe-quickstart</code></pre>
+<p>will generate a base config</p>
+<p>Edit the config with:</p>
+<pre><code>  write_showers: true # store DL2 stereo geometry
+  write_raw_waveforms: true # write R0 waveforms
+  write_waveforms: true # write R1 waveforms
+  transform_waveform: true
+  waveform_dtype: "uint16"
+  waveform_offset: 400
+  waveform_scale: 80</code></pre>
+<p>The waveforms are scaled to fit in <code>uint16</code> and scaled back at reading.</p>
+<p>Then run:</p>
+<pre><code>ctapipe-process --config base_config.yaml --input ../Simtel/prod5/gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.simtel.zst --output gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.h5</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
