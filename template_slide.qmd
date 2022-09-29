@@ -1,0 +1,14 @@
+---
+title: $TITLE
+author: "Thomas Vuillaume"
+date: $DATE
+format:
+  revealjs:
+    incremental: true
+    smaller: true
+    theme: dark
+#    scrollable: true
+#    reference-location: document
+#    logo: logo.png
+#    footer: "Footer text"
+---

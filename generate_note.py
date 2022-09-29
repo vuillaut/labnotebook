@@ -18,6 +18,16 @@ parser.add_argument('--dir', '-d',
                     action='store_true',
                     help='make a new directory to include the notes')
 
+parser.add_argument('--talk',
+                    dest='talk',
+                    action='store_true',
+                    help='format = reveal.js slides')
+
+parser.add_argument('--overwrite',
+                    dest='overwrite',
+                    action='store_true',
+                    help='overwrite')
+
 
 args = parser.parse_args()
 
@@ -28,7 +38,8 @@ if __name__ == '__main__':
     today = datetime.date.today()
 
     notes_dir = Path(f'{Path(__file__).absolute().parent}/posts')
-    template_file = Path(__file__).absolute().parent.joinpath('template_note.md')
+    template_file = 'template_slide.qmd' if args.talk else 'template_note.qmd'
+    template_file = Path(__file__).absolute().parent.joinpath(template_file)
     assert notes_dir.exists()
     assert template_file.exists()
 
@@ -50,8 +61,8 @@ if __name__ == '__main__':
         notes_dir = notes_dir.joinpath(f'{filename}')
         notes_dir.mkdir(exist_ok=True)
 
-    new_file = notes_dir.joinpath(f'{filename}.md')
-    if new_file.exists():
+    new_file = notes_dir.joinpath(f'{filename}.qmd')
+    if new_file.exists() and not args.overwrite:
         raise OSError(f'The file {new_file} for the next meeting already exists. Stopping.')
 
     else:
