@@ -2,11 +2,11 @@
 title: "ctapipe generate R1/DL0 HDF5"
 author: "Thomas Vuillaume"
 date: "2022-09-01"
+categories: [notes]
 format:
   html:
     code-fold: true
     theme: minty
-    categories: [notes]
     page-layout: full
 ---
 

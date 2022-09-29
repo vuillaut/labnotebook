@@ -2,11 +2,11 @@
 title: "LST-1 data analysis worflow"
 author: "Thomas Vuillaume"
 date: "July 1, 2022"
+categories: [notes, cta]
 format:
   html:
     code-fold: true
     theme: minty
-    categories: [cta, lst, analysis]
     page-layout: full
 ---
 

@@ -2,11 +2,11 @@
 title: "conda must config"
 author: "Thomas Vuillaume"
 date: "2022-07-22"
+categories: [notes]
 format:
   html:
     code-fold: true
     theme: minty
-    categories: [notes]
     page-layout: full
 ---
 
