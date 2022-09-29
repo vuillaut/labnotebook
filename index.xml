@@ -9,7 +9,7 @@
 <link>https://vuillaut.github.io/labnotebook/index.html</link>
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
-<generator>quarto-1.1.168</generator>
+<generator>quarto-1.1.251</generator>
 <lastBuildDate>Thu, 01 Sep 2022 00:00:00 GMT</lastBuildDate>
 <item>
   <title>ctapipe generate R1/DL0 HDF5</title>
