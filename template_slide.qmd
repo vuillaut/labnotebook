@@ -2,6 +2,7 @@
 title: $TITLE
 author: "Thomas Vuillaume"
 date: $DATE
+categories: [talks]
 format:
   revealjs:
     incremental: true

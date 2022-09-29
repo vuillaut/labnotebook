@@ -2,10 +2,10 @@
 title: $TITLE
 author: "Thomas Vuillaume"
 date: $DATE
+categories: [notes]
 format:
   html:
     code-fold: true
     theme: minty
-    categories: [notes]
     page-layout: full
 ---
