@@ -6,7 +6,7 @@ format:
   html:
     code-fold: true
     theme: minty
-    categories: []
+    categories: [notes]
     page-layout: full
 ---
 
