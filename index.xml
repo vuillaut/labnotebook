@@ -40,6 +40,7 @@
 </section>
 
  ]]></description>
+  <category>notes</category>
   <guid>https://vuillaut.github.io/labnotebook/posts/2022-09-01_ctapipe_hdf5_r0.html</guid>
   <pubDate>Thu, 01 Sep 2022 00:00:00 GMT</pubDate>
 </item>
@@ -97,6 +98,7 @@
 </section>
 
  ]]></description>
+  <category>notes</category>
   <guid>https://vuillaut.github.io/labnotebook/posts/2022-07-27_analyse_LST-1_data.html</guid>
   <pubDate>Wed, 27 Jul 2022 00:00:00 GMT</pubDate>
 </item>
@@ -134,6 +136,7 @@ channels:
 </section>
 
  ]]></description>
+  <category>notes</category>
   <guid>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</guid>
   <pubDate>Fri, 22 Jul 2022 00:00:00 GMT</pubDate>
 </item>
@@ -201,6 +204,8 @@ channels:
 
 
  ]]></description>
+  <category>notes</category>
+  <category>cta</category>
   <guid>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</guid>
   <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
 </item>
@@ -821,6 +826,8 @@ Let’s find the effective focal length that minimize the bias.</p>
 </section>
 
  ]]></description>
+  <category>notes</category>
+  <category>cta</category>
   <guid>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</guid>
   <pubDate>Thu, 09 Jun 2022 00:00:00 GMT</pubDate>
 </item>
