@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thomas Vuillaume">
-<meta name="dcterms.date" content="2022-07-01">
+<meta name="dcterms.date" content="2023-01-11">
 
-<title>Lab Notebook - LST-1 data analysis worflow</title>
+<title>Lab Notebook - conda config</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,9 +60,6 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -103,10 +100,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page">
-      <h1 class="title">LST-1 data analysis worflow</h1>
+      <h1 class="title">conda config</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">notes</div>
-                <div class="quarto-category">cta</div>
               </div>
                   </div>
   </div>
@@ -124,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 1, 2022</p>
+        <p class="date">2023-01-11</p>
       </div>
     </div>
     
@@ -142,59 +138,37 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+<section id="personnal-conda-config." class="level1">
+<h1>Personnal conda config.</h1>
+<p>May evolve in time.</p>
+<section id="libmamba-solver-for-conda" class="level2">
+<h2 class="anchored" data-anchor-id="libmamba-solver-for-conda">libmamba solver for conda</h2>
+<p>See https://conda.github.io/conda-libmamba-solver/getting-started/</p>
+<p>Install Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers</p>
+<pre><code>conda install -n base conda-libmamba-solver
+conda config --set solver libmamba</code></pre>
+<p>Don’t install anything else in base.</p>
+</section>
+<section id="my-envs" class="level2">
+<h2 class="anchored" data-anchor-id="my-envs">My envs</h2>
+<p>https://github.com/vuillaut/myenvs</p>
+<pre><code>conda config --add channels vuillaut
+conda create -n jlab jlab</code></pre>
+</section>
+<section id="jupyter-lab" class="level2">
+<h2 class="anchored" data-anchor-id="jupyter-lab">Jupyter lab</h2>
+<p>To add a conda env to the jupyter/ipython kernels:</p>
+<pre><code>function addkernel(){
+  conda activate $1
+  ipython kernel install --name "$1" --user
+}
 
-  R0-Protons[R0 Protons \n - node a\n - node b\n - node c]
-  R0-GammaDiffuse[R0 GammaDiffuse \n - node a\n - node b\n - node c]
-  R0-GammaPS[R0 Gamma PS \n - node a\n - node b\n - node c]
-
-  DL1-Protons[DL1 Protons \n - node a\n - node b\n - node c]
-  DL1-GammaDiffuse[DL1 GammaDiffuse \n - node a\n - node b\n - node c]
-  DL1-GammaPS[DL1 Gamma PS \n - node a\n - node b\n - node c]
-
-
-  R0-GammaDiffuse --&gt; |r0_to_dl1| DL1-GammaDiffuse
-  R0-Protons --&gt; |r0_to_dl1| DL1-Protons
-  R0-GammaPS --&gt; |r0_to_dl1| DL1-GammaPS
-
-
-  DL1-GammaDiffuse --&gt; |merge_dl1| DL1-GammaDiffuse-merged[DL1 Gamma Diffuse\nall nodes]
-  DL1-Protons --&gt; |merge_dl1| DL1-Protons-merged[DL1 Protons\nall nodes]
-
-  DL1-GammaDiffuse-merged &amp; DL1-Protons-merged --&gt; train_pipe((train_pipe))
-
-  train_pipe --&gt; models
-
-  models --&gt; DL2-GammaPS
-
-  DL1-GammaPS --&gt; |merge_dl1| DL1-GammaPS-merged[DL1 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
-  DL1-GammaPS-merged ----&gt; DL2-GammaPS
-  DL2-GammaPS[DL2 Gamma PS \n - node a merged\n - node b merged\n - node c merged]
-
-  DL2-GammaPS --&gt; |dl2_to_irf| IRF-GammaPS
-  IRF-GammaPS[IRF Gamma PS \n - node a merged\n - node b merged\n - node c merged]
-
-  RO-real --&gt; |lstosa| DL1-real -.....-&gt; |lstchain_dl1_to_dl2| DL2-real
-  models .-&gt; |lstchain_dl1_to_dl2| DL2-real
-  DL2-GammaPS .-&gt; |lstchain_create_irf_files| IRF-custom
-  DL2-real &amp; IRF-custom .-&gt; DL3-real
-
-</pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-<p>Plain lines: done with lstmcpipe</p>
-<p>Dashed lines: to be done by analyzers</p>
+addkernel myenv</code></pre>
+<p>This way you can run the jupyterlab interface without prefered plugins but run different computing kernels.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

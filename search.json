@@ -1,17 +1,24 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Personnal blog-like laboratory notebook.",
-    "section": "",
-    "text": "notes\n\n\n\n\n\n\n\n\n\n\n\nSep 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 22, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\n\n\n\n\n\n\n\nJul 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\nLST-1 study of the coma aberration bias correction\n\n\n\n\n\n\nJun 9, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "Personnal blog-like laboratory notebook."
+  },
+  {
+    "objectID": "posts/2022-07-22_conda_must_config.html",
+    "href": "posts/2022-07-22_conda_must_config.html",
+    "title": "conda must config",
+    "section": "",
+    "text": "Use shared conda\n__conda_setup=\"$('/usr/bin/conda' 'shell.bash' 'hook' 2> /dev/null)\"\neval \"$__conda_setup\"\n\n\nSetup config\nconda config\nWill generate a .condarc file in the home directory.\nEdit this file to add the following:\nenvs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/envs/\n\npkgs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/pkgs/\n\nchannels:\n  - conda-forge\n  - defaults\nChanging pkgs_dirs and envs_dirs is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues."
+  },
+  {
+    "objectID": "posts/conda_config.html",
+    "href": "posts/conda_config.html",
+    "title": "conda config",
+    "section": "",
+    "text": "May evolve in time.\n\n\nSee https://conda.github.io/conda-libmamba-solver/getting-started/\nInstall Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers\nconda install -n base conda-libmamba-solver\nconda config --set solver libmamba\nDon’t install anything else in base.\n\n\n\nhttps://github.com/vuillaut/myenvs\nconda config --add channels vuillaut\nconda create -n jlab jlab\n\n\n\nTo add a conda env to the jupyter/ipython kernels:\nfunction addkernel(){\n  conda activate $1\n  ipython kernel install --name \"$1\" --user\n}\n\naddkernel myenv\nThis way you can run the jupyterlab interface without prefered plugins but run different computing kernels."
   },
   {
     "objectID": "posts/20220609_coma_aberration_bias/bias_corr_altaz.html",
@@ -46,7 +53,7 @@
     "href": "posts/20220701_LST1_data_flowchart.html",
     "title": "LST-1 data analysis worflow",
     "section": "",
-    "text": "Plain lines: done with lstmcpipe\nDashed lines: to be done by analyzers"
+    "text": "flowchart LR\n\n  R0-Protons[R0 Protons \\n - node a\\n - node b\\n - node c]\n  R0-GammaDiffuse[R0 GammaDiffuse \\n - node a\\n - node b\\n - node c]\n  R0-GammaPS[R0 Gamma PS \\n - node a\\n - node b\\n - node c]\n\n  DL1-Protons[DL1 Protons \\n - node a\\n - node b\\n - node c]\n  DL1-GammaDiffuse[DL1 GammaDiffuse \\n - node a\\n - node b\\n - node c]\n  DL1-GammaPS[DL1 Gamma PS \\n - node a\\n - node b\\n - node c]\n\n\n  R0-GammaDiffuse --> |r0_to_dl1| DL1-GammaDiffuse\n  R0-Protons --> |r0_to_dl1| DL1-Protons\n  R0-GammaPS --> |r0_to_dl1| DL1-GammaPS\n\n\n  DL1-GammaDiffuse --> |merge_dl1| DL1-GammaDiffuse-merged[DL1 Gamma Diffuse\\nall nodes]\n  DL1-Protons --> |merge_dl1| DL1-Protons-merged[DL1 Protons\\nall nodes]\n\n  DL1-GammaDiffuse-merged & DL1-Protons-merged --> train_pipe((train_pipe))\n\n  train_pipe --> models\n\n  models --> DL2-GammaPS\n\n  DL1-GammaPS --> |merge_dl1| DL1-GammaPS-merged[DL1 Gamma PS \\n - node a merged\\n - node b merged\\n - node c merged]\n  DL1-GammaPS-merged ----> DL2-GammaPS\n  DL2-GammaPS[DL2 Gamma PS \\n - node a merged\\n - node b merged\\n - node c merged]\n\n  DL2-GammaPS --> |dl2_to_irf| IRF-GammaPS\n  IRF-GammaPS[IRF Gamma PS \\n - node a merged\\n - node b merged\\n - node c merged]\n\n  RO-real --> |lstosa| DL1-real -.....-> |lstchain_dl1_to_dl2| DL2-real\n  models .-> |lstchain_dl1_to_dl2| DL2-real\n  DL2-GammaPS .-> |lstchain_create_irf_files| IRF-custom\n  DL2-real & IRF-custom .-> DL3-real\n\n\n\n\n\n\n\n\n\nPlain lines: done with lstmcpipe\nDashed lines: to be done by analyzers"
   },
   {
     "objectID": "posts/2022-07-27_analyse_LST-1_data.html",
@@ -60,13 +67,13 @@
     "href": "posts/2022-09-01_ctapipe_hdf5_r0.html",
     "title": "ctapipe generate R1/DL0 HDF5",
     "section": "",
-    "text": "ctapipe-quickstart\nwill generate a base config\nEdit the config with:\n  write_showers: true # store DL2 stereo geometry\n  write_raw_waveforms: true # write R0 waveforms\n  write_waveforms: true # write R1 waveforms\n  transform_waveform: true\n  waveform_dtype: \"uint16\"\n  waveform_offset: 400\n  waveform_scale: 80\nThe waveforms are scaled to fit in uint16 and scaled back at reading.\nThen run:\nctapipe-process --config base_config.yaml --input ../Simtel/prod5/gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.simtel.zst --output gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.h5"
+    "text": "ctapipe generate HDF5 with R1/DL0 waveforms\nctapipe-quickstart\nwill generate a base config\nEdit the config with:\n  write_showers: true # store DL2 stereo geometry\n  write_raw_waveforms: true # write R0 waveforms\n  write_waveforms: true # write R1 waveforms\n  transform_waveform: true\n  waveform_dtype: \"uint16\"\n  waveform_offset: 400\n  waveform_scale: 80\nThe waveforms are scaled to fit in uint16 and scaled back at reading.\nThen run:\nctapipe-process --config base_config.yaml --input ../Simtel/prod5/gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.simtel.zst --output gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.h5"
   },
   {
-    "objectID": "posts/2022-07-22_conda_must_config.html",
-    "href": "posts/2022-07-22_conda_must_config.html",
-    "title": "conda must config",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Personnal blog-like laboratory notebook.",
     "section": "",
-    "text": "Setup config\nconda config\nWill generate a .condarc file in the home directory.\nEdit this file to add the following:\nenvs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/envs/\n\npkgs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/pkgs/\n\nchannels:\n  - conda-forge\n  - defaults\nChanging pkgs_dirs and envs_dirs is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues."
+    "text": "conda config\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\n\n\nctapipe generate R1/DL0 HDF5\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nSep 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\nanalyse LST-1 data\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\nconda must config\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 22, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\nLST-1 data analysis worflow\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\n\n\n\n\n\n\n\nJul 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n\n\nCorrecting coma aberration bias\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\nLST-1 study of the coma aberration bias correction\n\n\n\n\n\n\nJun 9, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\nNo matching items"
   }
 ]
