@@ -10,7 +10,53 @@
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
 <generator>quarto-1.2.313</generator>
-<lastBuildDate>Thu, 01 Sep 2022 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 01 Nov 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>conda config</title>
+  <dc:creator>Thomas Vuillaume</dc:creator>
+  <link>https://vuillaut.github.io/labnotebook/posts/conda_config.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="personnal-conda-config." class="level1">
+<h1>Personnal conda config.</h1>
+<p>May evolve in time.</p>
+<section id="libmamba-solver-for-conda" class="level2">
+<h2 class="anchored" data-anchor-id="libmamba-solver-for-conda">libmamba solver for conda</h2>
+<p>See https://conda.github.io/conda-libmamba-solver/getting-started/</p>
+<p>Install Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers</p>
+<pre><code>conda install -n base conda-libmamba-solver
+conda config --set solver libmamba</code></pre>
+<p>Don’t install anything else in base.</p>
+</section>
+<section id="my-envs" class="level2">
+<h2 class="anchored" data-anchor-id="my-envs">My envs</h2>
+<p>https://github.com/vuillaut/myenvs</p>
+<pre><code>conda config --add channels vuillaut
+conda create -n jlab jlab</code></pre>
+</section>
+<section id="jupyter-lab" class="level2">
+<h2 class="anchored" data-anchor-id="jupyter-lab">Jupyter lab</h2>
+<p>To add a conda env to the jupyter/ipython kernels:</p>
+<pre><code>function addkernel(){
+  conda activate $1
+  ipython kernel install --name "$1" --user
+}
+
+addkernel myenv</code></pre>
+<p>This way you can run the jupyterlab interface without prefered plugins but run different computing kernels.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>notes</category>
+  <guid>https://vuillaut.github.io/labnotebook/posts/conda_config.html</guid>
+  <pubDate>Wed, 01 Nov 2023 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>ctapipe generate R1/DL0 HDF5</title>
   <dc:creator>Thomas Vuillaume</dc:creator>
@@ -830,50 +876,6 @@ Let’s find the effective focal length that minimize the bias.</p>
   <category>cta</category>
   <guid>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</guid>
   <pubDate>Thu, 09 Jun 2022 00:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>conda config</title>
-  <link>https://vuillaut.github.io/labnotebook/posts/conda_config.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<section id="personnal-conda-config." class="level1">
-<h1>Personnal conda config.</h1>
-<p>May evolve in time.</p>
-<section id="libmamba-solver-for-conda" class="level2">
-<h2 class="anchored" data-anchor-id="libmamba-solver-for-conda">libmamba solver for conda</h2>
-<p>See https://conda.github.io/conda-libmamba-solver/getting-started/</p>
-<p>Install Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers</p>
-<pre><code>conda install -n base conda-libmamba-solver
-conda config --set solver libmamba</code></pre>
-<p>Don’t install anything else in base.</p>
-</section>
-<section id="my-envs" class="level2">
-<h2 class="anchored" data-anchor-id="my-envs">My envs</h2>
-<p>https://github.com/vuillaut/myenvs</p>
-<pre><code>conda config --add channels vuillaut
-conda create -n jlab jlab</code></pre>
-</section>
-<section id="jupyter-lab" class="level2">
-<h2 class="anchored" data-anchor-id="jupyter-lab">Jupyter lab</h2>
-<p>To add a conda env to the jupyter/ipython kernels:</p>
-<pre><code>function addkernel(){
-  conda activate $1
-  ipython kernel install --name "$1" --user
-}
-
-addkernel myenv</code></pre>
-<p>This way you can run the jupyterlab interface without prefered plugins but run different computing kernels.</p>
-
-
-</section>
-</section>
-
- ]]></description>
-  <guid>https://vuillaut.github.io/labnotebook/posts/conda_config.html</guid>
-  <pubDate>Wed, 11 Jan 2023 14:10:23 GMT</pubDate>
 </item>
 </channel>
 </rss>
