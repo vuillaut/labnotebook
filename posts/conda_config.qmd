@@ -1,0 +1,51 @@
+# Personnal conda config.
+
+May evolve in time.
+
+## libmamba solver for conda
+---
+title: "conda config"
+author: "Thomas Vuillaume"
+date: "2023-01-11"
+categories: [notes]
+format:
+  html:
+    code-fold: true
+    theme: minty
+    page-layout: full
+---
+
+See https://conda.github.io/conda-libmamba-solver/getting-started/
+
+Install Anaconda or Miniconda:
+https://docs.conda.io/en/latest/miniconda.html#linux-installers
+
+```
+conda install -n base conda-libmamba-solver
+conda config --set solver libmamba
+```
+
+Don't install anything else in base.
+
+## My envs
+
+https://github.com/vuillaut/myenvs
+
+```
+conda config --add channels vuillaut
+conda create -n jlab jlab
+```
+
+## Jupyter lab
+
+To add a conda env to the jupyter/ipython kernels:
+```
+function addkernel(){
+  conda activate $1
+  ipython kernel install --name "$1" --user
+}
+
+addkernel myenv
+```
+
+This way you can run the jupyterlab interface without prefered plugins but run different computing kernels.
