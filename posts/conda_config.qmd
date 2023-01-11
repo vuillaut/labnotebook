@@ -1,3 +1,15 @@
+---
+title: "conda personal config"
+author: "Thomas Vuillaume"
+date: "2023-11-01"
+categories: [notes]
+format:
+  html:
+    code-fold: true
+    theme: minty
+    page-layout: full
+---
+
 # Personnal conda config.
 
 May evolve in time.
