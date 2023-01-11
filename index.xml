@@ -10,7 +10,7 @@
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
 <generator>quarto-1.2.313</generator>
-<lastBuildDate>Wed, 01 Nov 2023 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 11 Jan 2023 00:00:00 GMT</lastBuildDate>
 <item>
   <title>conda config</title>
   <dc:creator>Thomas Vuillaume</dc:creator>
@@ -55,7 +55,7 @@ addkernel myenv</code></pre>
  ]]></description>
   <category>notes</category>
   <guid>https://vuillaut.github.io/labnotebook/posts/conda_config.html</guid>
-  <pubDate>Wed, 01 Nov 2023 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 11 Jan 2023 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>ctapipe generate R1/DL0 HDF5</title>
