@@ -1,0 +1,69 @@
+---
+title: "Running JupyterLab in a singularity container on MUST"
+author: "Thomas Vuillaume"
+date: "2023-03-01"
+categories: [notes]
+format:
+  html:
+    code-fold: true
+    theme: minty
+    page-layout: full
+---
+
+# singularity recipe
+
+```
+Bootstrap: docker
+From: continuumio/anaconda3:latest
+
+%environment
+    export PATH="/opt/conda/bin:$PATH"
+
+%post
+    # Installation de pip
+    conda install -y -c anaconda pip
+
+    # Installation de la librairie CTAplot avec pip
+    pip install ctaplot
+
+    # Création du répertoire .jupyter
+    mkdir /root/.jupyter
+
+    # Création du fichier de configuration de Jupyter Lab
+    touch /root/.jupyter/jupyter_notebook_config.py
+
+    # Configuration de Jupyter Lab
+    echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.open_browser = False" >> /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.port = 8888" >> /root/.jupyter/jupyter_notebook_config.py
+
+    # Exposition du port de Jupyter Lab
+    export PORT=8888
+    echo "export PORT=8888" >> /root/.bashrc
+
+    # Modification des permissions du répertoire .jupyter
+    chmod -R 777 /root/.jupyter
+
+%runscript
+    jupyter lab --allow-root --port $PORT --no-browser
+```
+
+# 2. Building the image
+
+```
+singularity build jup.sif jup.def
+``` 
+
+# 3. Executing the container 
+
+```
+singularity exec --bind $PWD:/run/user jup.sif jupyter-lab --no-browser --ip=127.0.0.1 --NotebookApp.token=''
+```
+
+# 4. S'y connecter depuis son laptop
+
+Dans un autre terminal
+
+```
+ssh -L 8888:127.0.0.1:8888 username@lappusmb.in2p3.fr
+```
