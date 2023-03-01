@@ -9,8 +9,74 @@
 <link>https://vuillaut.github.io/labnotebook/index.html</link>
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
-<generator>quarto-1.2.313</generator>
-<lastBuildDate>Wed, 11 Jan 2023 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.2.335</generator>
+<lastBuildDate>Wed, 01 Mar 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Running JupyterLab in a singularity container on MUST</title>
+  <dc:creator>Thomas Vuillaume</dc:creator>
+  <link>https://vuillaut.github.io/labnotebook/posts/2022-03-01_singularity_jupyterlab_must.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="singularity-recipe" class="level1">
+<h1>singularity recipe</h1>
+<pre><code>Bootstrap: docker
+From: continuumio/anaconda3:latest
+
+%environment
+    export PATH="/opt/conda/bin:$PATH"
+
+%post
+    # Installation de pip
+    conda install -y -c anaconda pip
+
+    # Installation de la librairie CTAplot avec pip
+    pip install ctaplot
+
+    # Création du répertoire .jupyter
+    mkdir /root/.jupyter
+
+    # Création du fichier de configuration de Jupyter Lab
+    touch /root/.jupyter/jupyter_notebook_config.py
+
+    # Configuration de Jupyter Lab
+    echo "c.NotebookApp.ip = '0.0.0.0'" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.open_browser = False" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.port = 8888" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
+
+    # Exposition du port de Jupyter Lab
+    export PORT=8888
+    echo "export PORT=8888" &gt;&gt; /root/.bashrc
+
+    # Modification des permissions du répertoire .jupyter
+    chmod -R 777 /root/.jupyter
+
+%runscript
+    jupyter lab --allow-root --port $PORT --no-browser</code></pre>
+</section>
+<section id="building-the-image" class="level1">
+<h1>2. Building the image</h1>
+<pre><code>singularity build jup.sif jup.def</code></pre>
+</section>
+<section id="executing-the-container" class="level1">
+<h1>3. Executing the container</h1>
+<pre><code>singularity exec --bind $PWD:/run/user jup.sif jupyter-lab --no-browser --ip=127.0.0.1 --NotebookApp.token=''</code></pre>
+</section>
+<section id="sy-connecter-depuis-son-laptop" class="level1">
+<h1>4. S’y connecter depuis son laptop</h1>
+<p>Dans un autre terminal</p>
+<pre><code>ssh -L 8888:127.0.0.1:8888 username@lappusmb.in2p3.fr</code></pre>
+
+
+</section>
+
+ ]]></description>
+  <category>notes</category>
+  <guid>https://vuillaut.github.io/labnotebook/posts/2022-03-01_singularity_jupyterlab_must.html</guid>
+  <pubDate>Wed, 01 Mar 2023 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>conda config</title>
   <dc:creator>Thomas Vuillaume</dc:creator>

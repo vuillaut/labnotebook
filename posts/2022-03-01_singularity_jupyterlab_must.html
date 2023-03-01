@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thomas Vuillaume">
-<meta name="dcterms.date" content="2022-07-22">
+<meta name="dcterms.date" content="2023-03-01">
 
-<title>Lab Notebook - conda must config</title>
+<title>Lab Notebook - Running JupyterLab in a singularity container on MUST</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page">
-      <h1 class="title">conda must config</h1>
+      <h1 class="title">Running JupyterLab in a singularity container on MUST</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">notes</div>
               </div>
@@ -120,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 22, 2022</p>
+        <p class="date">March 1, 2023</p>
       </div>
     </div>
     
@@ -138,26 +138,54 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="use-shared-conda" class="level1">
-<h1>Use shared conda</h1>
-<pre><code>__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
-eval "$__conda_setup"</code></pre>
+<section id="singularity-recipe" class="level1">
+<h1>singularity recipe</h1>
+<pre><code>Bootstrap: docker
+From: continuumio/anaconda3:latest
+
+%environment
+    export PATH="/opt/conda/bin:$PATH"
+
+%post
+    # Installation de pip
+    conda install -y -c anaconda pip
+
+    # Installation de la librairie CTAplot avec pip
+    pip install ctaplot
+
+    # Création du répertoire .jupyter
+    mkdir /root/.jupyter
+
+    # Création du fichier de configuration de Jupyter Lab
+    touch /root/.jupyter/jupyter_notebook_config.py
+
+    # Configuration de Jupyter Lab
+    echo "c.NotebookApp.ip = '0.0.0.0'" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.open_browser = False" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
+    echo "c.NotebookApp.port = 8888" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py
+
+    # Exposition du port de Jupyter Lab
+    export PORT=8888
+    echo "export PORT=8888" &gt;&gt; /root/.bashrc
+
+    # Modification des permissions du répertoire .jupyter
+    chmod -R 777 /root/.jupyter
+
+%runscript
+    jupyter lab --allow-root --port $PORT --no-browser</code></pre>
 </section>
-<section id="setup-config" class="level1">
-<h1>Setup config</h1>
-<pre><code>conda config</code></pre>
-<p>Will generate a <code>.condarc</code> file in the home directory.</p>
-<p>Edit this file to add the following:</p>
-<pre><code>envs_dirs:
-  - /mustfs/CONTAINERS/conda/glearn/envs/
-
-pkgs_dirs:
-  - /mustfs/CONTAINERS/conda/glearn/pkgs/
-
-channels:
-  - conda-forge
-  - defaults</code></pre>
-<p>Changing <code>pkgs_dirs</code> and <code>envs_dirs</code> is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues.</p>
+<section id="building-the-image" class="level1">
+<h1>2. Building the image</h1>
+<pre><code>singularity build jup.sif jup.def</code></pre>
+</section>
+<section id="executing-the-container" class="level1">
+<h1>3. Executing the container</h1>
+<pre><code>singularity exec --bind $PWD:/run/user jup.sif jupyter-lab --no-browser --ip=127.0.0.1 --NotebookApp.token=''</code></pre>
+</section>
+<section id="sy-connecter-depuis-son-laptop" class="level1">
+<h1>4. S’y connecter depuis son laptop</h1>
+<p>Dans un autre terminal</p>
+<pre><code>ssh -L 8888:127.0.0.1:8888 username@lappusmb.in2p3.fr</code></pre>
 
 
 </section>

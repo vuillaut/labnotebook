@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2022-03-01_singularity_jupyterlab_must.html",
       "/posts/conda_config.html",
       "/posts/2022-09-01_ctapipe_hdf5_r0.html",
       "/posts/2022-07-27_analyse_LST-1_data.html",

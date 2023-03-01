@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://vuillaut.github.io/labnotebook/template_note.html</loc>
-    <lastmod>2023-01-11T14:57:25.029Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
-    <lastmod>2023-01-11T14:57:25.685Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</loc>
-    <lastmod>2023-01-11T14:57:26.005Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vuillaut.github.io/labnotebook/posts/conda_config.html</loc>
-    <lastmod>2023-01-11T14:57:26.325Z</lastmod>
-  </url>
-  <url>
-    <loc>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</loc>
-    <lastmod>2023-01-11T14:57:27.029Z</lastmod>
+    <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-27_analyse_LST-1_data.html</loc>
+    <lastmod>2023-03-01T09:42:40.841Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</loc>
-    <lastmod>2023-01-11T14:57:27.353Z</lastmod>
+    <lastmod>2023-03-01T09:42:41.789Z</lastmod>
   </url>
   <url>
-    <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-27_analyse_LST-1_data.html</loc>
-    <lastmod>2023-01-11T14:57:27.665Z</lastmod>
+    <loc>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</loc>
+    <lastmod>2023-03-01T09:42:42.798Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/posts/conda_config.html</loc>
+    <lastmod>2023-03-01T09:42:43.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/posts/2022-03-01_singularity_jupyterlab_must.html</loc>
+    <lastmod>2023-03-01T09:42:43.594Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</loc>
+    <lastmod>2023-03-01T09:42:43.998Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/2022-09-01_ctapipe_hdf5_r0.html</loc>
-    <lastmod>2023-01-11T14:57:27.962Z</lastmod>
+    <lastmod>2023-03-01T09:42:44.390Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
+    <lastmod>2023-03-01T09:42:44.766Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/template_note.html</loc>
+    <lastmod>2023-03-01T09:42:45.146Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/index.html</loc>
-    <lastmod>2023-01-11T14:57:28.378Z</lastmod>
+    <lastmod>2023-03-01T09:42:45.726Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/template_slide.html</loc>
-    <lastmod>2023-01-11T14:57:28.738Z</lastmod>
+    <lastmod>2023-03-01T09:42:47.258Z</lastmod>
   </url>
 </urlset>
