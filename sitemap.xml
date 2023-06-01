@@ -2,50 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/20220701_LST1_data_flowchart.html</loc>
-    <lastmod>2023-06-01T16:53:13.480Z</lastmod>
+    <lastmod>2023-06-01T16:54:16.069Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-27_analyse_LST-1_data.html</loc>
-    <lastmod>2023-06-01T16:53:14.244Z</lastmod>
+    <lastmod>2023-06-01T16:54:16.817Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz.html</loc>
-    <lastmod>2023-06-01T16:53:15.132Z</lastmod>
+    <lastmod>2023-06-01T16:54:17.613Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/2023-06-01_docker_cpu.html</loc>
-    <lastmod>2023-06-01T16:53:15.672Z</lastmod>
+    <lastmod>2023-06-01T16:54:17.921Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/2022-03-01_singularity_jupyterlab_must.html</loc>
-    <lastmod>2023-06-01T16:53:16.316Z</lastmod>
+    <lastmod>2023-06-01T16:54:18.217Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/2022-07-22_conda_must_config.html</loc>
-    <lastmod>2023-06-01T16:53:16.688Z</lastmod>
+    <lastmod>2023-06-01T16:54:18.525Z</lastmod>
+  </url>
+  <url>
+    <loc>https://vuillaut.github.io/labnotebook/posts/2023-04-18_singularity_conda.html</loc>
+    <lastmod>2023-06-01T16:54:18.813Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/2022-09-01_ctapipe_hdf5_r0.html</loc>
-    <lastmod>2023-06-01T16:53:17.016Z</lastmod>
+    <lastmod>2023-06-01T16:54:19.109Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/posts/conda_config.html</loc>
-    <lastmod>2023-06-01T16:53:17.344Z</lastmod>
+    <lastmod>2023-06-01T16:54:19.405Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/index.html</loc>
-    <lastmod>2023-06-01T16:53:18.152Z</lastmod>
+    <lastmod>2023-06-01T16:54:20.261Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/template_note.html</loc>
-    <lastmod>2023-06-01T16:53:18.440Z</lastmod>
+    <lastmod>2023-06-01T16:54:20.545Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/about.html</loc>
-    <lastmod>2023-06-01T16:53:18.732Z</lastmod>
+    <lastmod>2023-06-01T16:54:20.813Z</lastmod>
   </url>
   <url>
     <loc>https://vuillaut.github.io/labnotebook/template_slide.html</loc>
-    <lastmod>2023-06-01T16:53:19.072Z</lastmod>
+    <lastmod>2023-06-01T16:54:21.157Z</lastmod>
   </url>
 </urlset>

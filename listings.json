@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/2023-06-01_docker_cpu.html",
+      "/posts/2023-04-18_singularity_conda.html",
       "/posts/2022-03-01_singularity_jupyterlab_must.html",
       "/posts/conda_config.html",
       "/posts/2022-09-01_ctapipe_hdf5_r0.html",
