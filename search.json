@@ -1,10 +1,80 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Personnal blog-like laboratory notebook.",
+    "section": "",
+    "text": "Docker desktop on MAC OSX using 100% CPU\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJun 1, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nSingularity and Conda\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nApr 18, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nRunning JupyterLab in a singularity container on MUST\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nMar 1, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nconda config\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJan 11, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nctapipe generate R1/DL0 HDF5\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nSep 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nanalyse LST-1 data\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nconda must config\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 22, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nLST-1 data analysis worflow\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\n\n\n\n\n\n\n\nJul 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nCorrecting coma aberration bias\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\nLST-1 study of the coma aberration bias correction\n\n\n\n\n\n\nJun 9, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2022-07-22_conda_must_config.html",
+    "href": "posts/2022-07-22_conda_must_config.html",
+    "title": "conda must config",
+    "section": "",
+    "text": "Use shared conda\n__conda_setup=\"$('/usr/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)\"\neval \"$__conda_setup\"\n\n\nSetup config\nconda config\nWill generate a .condarc file in the home directory.\nEdit this file to add the following:\nenvs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/envs/\n\npkgs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/pkgs/\n\nchannels:\n  - conda-forge\n  - defaults\nChanging pkgs_dirs and envs_dirs is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues."
+  },
+  {
+    "objectID": "posts/2023-04-18_singularity_conda.html",
+    "href": "posts/2023-04-18_singularity_conda.html",
+    "title": "Singularity and Conda",
+    "section": "",
+    "text": "Based on the excellent post https://geniac.readthedocs.io/en/version-2.4.1/conda.html\nBootstrap: docker\nFrom: gitlab-registry.in2p3.fr/gammalearn/gammalearn/mamba:master\n\n%post\n    conda create -n glearn astropy \\\n    && conda clean -a \\\n    && echo -e \"#! /bin/bash\\n\\n# script to activate the conda environment\" &gt; ~/.bashrc \\\n    && conda init bash \\\n    && echo -e \"\\nconda activate glearn\" &gt;&gt; ~/.bashrc \\\n    && mkdir -p /opt/etc/ && cp ~/.bashrc /opt/etc/bashrc\n\n\n%environment\n    # Activate Conda environment\n    export PATH=\"$HOME/miniconda/envs/glearn/bin:$PATH\"\n    source /opt/etc/bashrc\nBootstrap: docker\nFrom: gitlab-registry.in2p3.fr/gammalearn/gammalearn:v0.10\n\n%post\n    echo -e \"#! /bin/bash\\n\\n# script to activate the conda environment\" &gt; ~/.bashrc \\\n    && conda init bash \\\n    && echo -e \"\\nconda activate glearn\" &gt;&gt; ~/.bashrc \\\n    && mkdir -p /opt/etc/ && cp ~/.bashrc /opt/etc/bashrc\n\n\n%environment\n    # Activate Conda environment\n    export PATH=\"/opt/conda/envs/glearn/bin:$PATH\"\n    source /opt/etc/bashrc"
+  },
+  {
+    "objectID": "posts/2022-09-01_ctapipe_hdf5_r0.html",
+    "href": "posts/2022-09-01_ctapipe_hdf5_r0.html",
+    "title": "ctapipe generate R1/DL0 HDF5",
+    "section": "",
+    "text": "ctapipe generate HDF5 with R1/DL0 waveforms\nctapipe-quickstart\nwill generate a base config\nEdit the config with:\n  write_showers: true # store DL2 stereo geometry\n  write_raw_waveforms: true # write R0 waveforms\n  write_waveforms: true # write R1 waveforms\n  transform_waveform: true\n  waveform_dtype: \"uint16\"\n  waveform_offset: 400\n  waveform_scale: 80\nThe waveforms are scaled to fit in uint16 and scaled back at reading.\nThen run:\nctapipe-process --config base_config.yaml --input ../Simtel/prod5/gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.simtel.zst --output gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.h5"
+  },
+  {
     "objectID": "posts/20220701_LST1_data_flowchart.html",
     "href": "posts/20220701_LST1_data_flowchart.html",
     "title": "LST-1 data analysis worflow",
     "section": "",
     "text": "flowchart LR\n\n  R0-Protons[R0 Protons \\n - node a\\n - node b\\n - node c]\n  R0-GammaDiffuse[R0 GammaDiffuse \\n - node a\\n - node b\\n - node c]\n  R0-GammaPS[R0 Gamma PS \\n - node a\\n - node b\\n - node c]\n\n  DL1-Protons[DL1 Protons \\n - node a\\n - node b\\n - node c]\n  DL1-GammaDiffuse[DL1 GammaDiffuse \\n - node a\\n - node b\\n - node c]\n  DL1-GammaPS[DL1 Gamma PS \\n - node a\\n - node b\\n - node c]\n\n\n  R0-GammaDiffuse --&gt; |r0_to_dl1| DL1-GammaDiffuse\n  R0-Protons --&gt; |r0_to_dl1| DL1-Protons\n  R0-GammaPS --&gt; |r0_to_dl1| DL1-GammaPS\n\n\n  DL1-GammaDiffuse --&gt; |merge_dl1| DL1-GammaDiffuse-merged[DL1 Gamma Diffuse\\nall nodes]\n  DL1-Protons --&gt; |merge_dl1| DL1-Protons-merged[DL1 Protons\\nall nodes]\n\n  DL1-GammaDiffuse-merged & DL1-Protons-merged --&gt; train_pipe((train_pipe))\n\n  train_pipe --&gt; models\n\n  models --&gt; DL2-GammaPS\n\n  DL1-GammaPS --&gt; |merge_dl1| DL1-GammaPS-merged[DL1 Gamma PS \\n - node a merged\\n - node b merged\\n - node c merged]\n  DL1-GammaPS-merged ----&gt; DL2-GammaPS\n  DL2-GammaPS[DL2 Gamma PS \\n - node a merged\\n - node b merged\\n - node c merged]\n\n  DL2-GammaPS --&gt; |dl2_to_irf| IRF-GammaPS\n  IRF-GammaPS[IRF Gamma PS \\n - node a merged\\n - node b merged\\n - node c merged]\n\n  RO-real --&gt; |lstosa| DL1-real -.....-&gt; |lstchain_dl1_to_dl2| DL2-real\n  models .-&gt; |lstchain_dl1_to_dl2| DL2-real\n  DL2-GammaPS .-&gt; |lstchain_create_irf_files| IRF-custom\n  DL2-real & IRF-custom .-&gt; DL3-real\n\n\n\n\n\n\nPlain lines: done with lstmcpipe\nDashed lines: to be done by analyzers"
+  },
+  {
+    "objectID": "posts/2022-03-01_singularity_jupyterlab_must.html",
+    "href": "posts/2022-03-01_singularity_jupyterlab_must.html",
+    "title": "Running JupyterLab in a singularity container on MUST",
+    "section": "",
+    "text": "singularity recipe\nBootstrap: docker\nFrom: continuumio/anaconda3:latest\n\n%environment\n    export PATH=\"/opt/conda/bin:$PATH\"\n\n%post\n    # Installation de pip\n    conda install -y -c anaconda pip\n\n    # Installation de la librairie CTAplot avec pip\n    pip install ctaplot\n\n    # Création du répertoire .jupyter\n    mkdir /root/.jupyter\n\n    # Création du fichier de configuration de Jupyter Lab\n    touch /root/.jupyter/jupyter_notebook_config.py\n\n    # Configuration de Jupyter Lab\n    echo \"c.NotebookApp.ip = '0.0.0.0'\" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py\n    echo \"c.NotebookApp.open_browser = False\" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py\n    echo \"c.NotebookApp.port = 8888\" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py\n\n    # Exposition du port de Jupyter Lab\n    export PORT=8888\n    echo \"export PORT=8888\" &gt;&gt; /root/.bashrc\n\n    # Modification des permissions du répertoire .jupyter\n    chmod -R 777 /root/.jupyter\n\n%runscript\n    jupyter lab --allow-root --port $PORT --no-browser\n\n\n2. Building the image\nsingularity build jup.sif jup.def\n\n\n3. Executing the container\nsingularity exec --bind $PWD:/run/user jup.sif jupyter-lab --no-browser --ip=127.0.0.1 --NotebookApp.token=''\n\n\n4. S’y connecter depuis son laptop\nDans un autre terminal\nssh -L 8888:127.0.0.1:8888 username@lappusmb.in2p3.fr"
+  },
+  {
+    "objectID": "posts/conda_config.html",
+    "href": "posts/conda_config.html",
+    "title": "conda config",
+    "section": "",
+    "text": "May evolve in time.\n\n\nSee https://conda.github.io/conda-libmamba-solver/getting-started/\nInstall Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers\nconda install -n base conda-libmamba-solver\nconda config --set solver libmamba\nDon’t install anything else in base.\n\n\n\nhttps://github.com/vuillaut/myenvs\nconda config --add channels vuillaut\nconda create -n jlab jlab\n\n\n\nTo add a conda env to the jupyter/ipython kernels:\nfunction addkernel(){\n  conda activate $1\n  ipython kernel install --name \"$1\" --user\n}\n\naddkernel myenv\nThis way you can run the jupyterlab interface without prefered plugins but run different computing kernels."
+  },
+  {
+    "objectID": "posts/conda_config.html#libmamba-solver-for-conda",
+    "href": "posts/conda_config.html#libmamba-solver-for-conda",
+    "title": "conda config",
+    "section": "",
+    "text": "See https://conda.github.io/conda-libmamba-solver/getting-started/\nInstall Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers\nconda install -n base conda-libmamba-solver\nconda config --set solver libmamba\nDon’t install anything else in base."
+  },
+  {
+    "objectID": "posts/conda_config.html#my-envs",
+    "href": "posts/conda_config.html#my-envs",
+    "title": "conda config",
+    "section": "",
+    "text": "https://github.com/vuillaut/myenvs\nconda config --add channels vuillaut\nconda create -n jlab jlab"
+  },
+  {
+    "objectID": "posts/conda_config.html#jupyter-lab",
+    "href": "posts/conda_config.html#jupyter-lab",
+    "title": "conda config",
+    "section": "",
+    "text": "To add a conda env to the jupyter/ipython kernels:\nfunction addkernel(){\n  conda activate $1\n  ipython kernel install --name \"$1\" --user\n}\n\naddkernel myenv\nThis way you can run the jupyterlab interface without prefered plugins but run different computing kernels."
+  },
+  {
+    "objectID": "posts/2023-06-01_docker_cpu.html",
+    "href": "posts/2023-06-01_docker_cpu.html",
+    "title": "Docker desktop on MAC OSX using 100% CPU",
+    "section": "",
+    "text": "Solved the problem doing:\nOpen the config in Docker desktop.\n\nAdd debug: false in Docker Engine config\nTurn off Use gRPC FUSE for file sharing\nTurn off Send usage statistics"
   },
   {
     "objectID": "posts/2022-07-27_analyse_LST-1_data.html",
@@ -82,76 +152,6 @@
     "title": "Correcting coma aberration bias",
     "section": "Testing the same correction on point source gammas",
     "text": "Testing the same correction on point source gammas\n\n\nCode\nfilename = 'dl2_gamma_20deg_180deg_off0.4deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'\n\ndef analyis(filename):\n    params = read_table(filename, path=dl2_params_lstcam_key)\n    add_params(params)\n    # bright_events = params[(params['intensity']&gt;5000)]\n    bright_events = params[(params['intensity']&gt;50) & ((params['gammaness']&gt;0.7))]\n    bright_events_corr = patch_events(bright_events, true_focal_length=29.04*u.m, plot=False)\n\n\n    fig, axes = plt.subplots(1, 3, figsize=(20,5))\n    \n    plot_psf(bright_events_corr, ax=axes[0])\n\n    opt=dict(bins=50,  histtype='step', range=(0, 0.1))\n    ctaplot.plot_theta2(bright_events['mc_alt'].quantity,\n                       bright_events['reco_alt'].quantity,\n                       bright_events['mc_az'].quantity,\n                       bright_events['reco_az'].quantity,\n                        ax=axes[1],\n                        label='no bias correction',\n                        **opt\n                       )\n    \n    ctaplot.plot_theta2(bright_events_corr['mc_alt'].quantity,\n                   bright_events_corr['reco_alt'].quantity,\n                   bright_events_corr['mc_az'].quantity,\n                   bright_events_corr['reco_az'].quantity,\n                        ax=axes[1],\n                    label='bias corrected',\n                        **opt\n                   )\n    axes[1].legend()\n    \n    ctaplot.plot_angular_resolution_per_energy(bright_events['mc_alt'].quantity,\n                                           bright_events['reco_alt'].quantity,\n                                           bright_events['mc_az'].quantity,\n                                           bright_events['reco_az'].quantity,\n                                           bright_events['reco_energy'].quantity,\n                                                  ax=axes[-1],\n                                             label='no bias correction',  \n                                              )\n\n\n    ctaplot.plot_angular_resolution_per_energy(bright_events_corr['mc_alt'].quantity,\n                                               bright_events_corr['reco_alt'].quantity,\n                                               bright_events_corr['mc_az'].quantity,\n                                               bright_events_corr['reco_az'].quantity,\n                                               bright_events_corr['reco_energy'].quantity,\n                                               ax=axes[-1],\n                                               label='bias corrected',\n                                               # ls='--'\n                                              )\n\n    ctaplot.plot_angular_resolution_cta_requirement('north', color='black', ax=axes[-1])\n    axes[-1].set_ylim(0, 0.4)\n\n\n\n\nCode\nanalyis(filename)"
-  },
-  {
-    "objectID": "posts/2023-06-01_docker_cpu.html",
-    "href": "posts/2023-06-01_docker_cpu.html",
-    "title": "Docker desktop on MAC OSX using 100% CPU",
-    "section": "",
-    "text": "Solved the problem doing:\nOpen the config in Docker desktop.\n\nAdd debug: false in Docker Engine config\nTurn off Use gRPC FUSE for file sharing\nTurn off Send usage statistics"
-  },
-  {
-    "objectID": "posts/2022-03-01_singularity_jupyterlab_must.html",
-    "href": "posts/2022-03-01_singularity_jupyterlab_must.html",
-    "title": "Running JupyterLab in a singularity container on MUST",
-    "section": "",
-    "text": "singularity recipe\nBootstrap: docker\nFrom: continuumio/anaconda3:latest\n\n%environment\n    export PATH=\"/opt/conda/bin:$PATH\"\n\n%post\n    # Installation de pip\n    conda install -y -c anaconda pip\n\n    # Installation de la librairie CTAplot avec pip\n    pip install ctaplot\n\n    # Création du répertoire .jupyter\n    mkdir /root/.jupyter\n\n    # Création du fichier de configuration de Jupyter Lab\n    touch /root/.jupyter/jupyter_notebook_config.py\n\n    # Configuration de Jupyter Lab\n    echo \"c.NotebookApp.ip = '0.0.0.0'\" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py\n    echo \"c.NotebookApp.open_browser = False\" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py\n    echo \"c.NotebookApp.port = 8888\" &gt;&gt; /root/.jupyter/jupyter_notebook_config.py\n\n    # Exposition du port de Jupyter Lab\n    export PORT=8888\n    echo \"export PORT=8888\" &gt;&gt; /root/.bashrc\n\n    # Modification des permissions du répertoire .jupyter\n    chmod -R 777 /root/.jupyter\n\n%runscript\n    jupyter lab --allow-root --port $PORT --no-browser\n\n\n2. Building the image\nsingularity build jup.sif jup.def\n\n\n3. Executing the container\nsingularity exec --bind $PWD:/run/user jup.sif jupyter-lab --no-browser --ip=127.0.0.1 --NotebookApp.token=''\n\n\n4. S’y connecter depuis son laptop\nDans un autre terminal\nssh -L 8888:127.0.0.1:8888 username@lappusmb.in2p3.fr"
-  },
-  {
-    "objectID": "posts/2022-07-22_conda_must_config.html",
-    "href": "posts/2022-07-22_conda_must_config.html",
-    "title": "conda must config",
-    "section": "",
-    "text": "Use shared conda\n__conda_setup=\"$('/usr/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)\"\neval \"$__conda_setup\"\n\n\nSetup config\nconda config\nWill generate a .condarc file in the home directory.\nEdit this file to add the following:\nenvs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/envs/\n\npkgs_dirs:\n  - /mustfs/CONTAINERS/conda/glearn/pkgs/\n\nchannels:\n  - conda-forge\n  - defaults\nChanging pkgs_dirs and envs_dirs is necessary to avoid hitting disk quotas in your own home directory. Create new directories to set these paths. This will avoid mutli-users installation and writing rights issues."
-  },
-  {
-    "objectID": "posts/2023-04-18_singularity_conda.html",
-    "href": "posts/2023-04-18_singularity_conda.html",
-    "title": "Singularity and Conda",
-    "section": "",
-    "text": "Based on the excellent post https://geniac.readthedocs.io/en/version-2.4.1/conda.html\nBootstrap: docker\nFrom: gitlab-registry.in2p3.fr/gammalearn/gammalearn/mamba:master\n\n%post\n    conda create -n glearn astropy \\\n    && conda clean -a \\\n    && echo -e \"#! /bin/bash\\n\\n# script to activate the conda environment\" &gt; ~/.bashrc \\\n    && conda init bash \\\n    && echo -e \"\\nconda activate glearn\" &gt;&gt; ~/.bashrc \\\n    && mkdir -p /opt/etc/ && cp ~/.bashrc /opt/etc/bashrc\n\n\n%environment\n    # Activate Conda environment\n    export PATH=\"$HOME/miniconda/envs/glearn/bin:$PATH\"\n    source /opt/etc/bashrc\nBootstrap: docker\nFrom: gitlab-registry.in2p3.fr/gammalearn/gammalearn:v0.10\n\n%post\n    echo -e \"#! /bin/bash\\n\\n# script to activate the conda environment\" &gt; ~/.bashrc \\\n    && conda init bash \\\n    && echo -e \"\\nconda activate glearn\" &gt;&gt; ~/.bashrc \\\n    && mkdir -p /opt/etc/ && cp ~/.bashrc /opt/etc/bashrc\n\n\n%environment\n    # Activate Conda environment\n    export PATH=\"/opt/conda/envs/glearn/bin:$PATH\"\n    source /opt/etc/bashrc"
-  },
-  {
-    "objectID": "posts/2022-09-01_ctapipe_hdf5_r0.html",
-    "href": "posts/2022-09-01_ctapipe_hdf5_r0.html",
-    "title": "ctapipe generate R1/DL0 HDF5",
-    "section": "",
-    "text": "ctapipe generate HDF5 with R1/DL0 waveforms\nctapipe-quickstart\nwill generate a base config\nEdit the config with:\n  write_showers: true # store DL2 stereo geometry\n  write_raw_waveforms: true # write R0 waveforms\n  write_waveforms: true # write R1 waveforms\n  transform_waveform: true\n  waveform_dtype: \"uint16\"\n  waveform_offset: 400\n  waveform_scale: 80\nThe waveforms are scaled to fit in uint16 and scaled back at reading.\nThen run:\nctapipe-process --config base_config.yaml --input ../Simtel/prod5/gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.simtel.zst --output gamma_20deg_0deg_run5___cta-prod5-paranal_desert-2147m-Paranal-dark.h5"
-  },
-  {
-    "objectID": "posts/conda_config.html",
-    "href": "posts/conda_config.html",
-    "title": "conda config",
-    "section": "",
-    "text": "May evolve in time.\n\n\nSee https://conda.github.io/conda-libmamba-solver/getting-started/\nInstall Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers\nconda install -n base conda-libmamba-solver\nconda config --set solver libmamba\nDon’t install anything else in base.\n\n\n\nhttps://github.com/vuillaut/myenvs\nconda config --add channels vuillaut\nconda create -n jlab jlab\n\n\n\nTo add a conda env to the jupyter/ipython kernels:\nfunction addkernel(){\n  conda activate $1\n  ipython kernel install --name \"$1\" --user\n}\n\naddkernel myenv\nThis way you can run the jupyterlab interface without prefered plugins but run different computing kernels."
-  },
-  {
-    "objectID": "posts/conda_config.html#libmamba-solver-for-conda",
-    "href": "posts/conda_config.html#libmamba-solver-for-conda",
-    "title": "conda config",
-    "section": "",
-    "text": "See https://conda.github.io/conda-libmamba-solver/getting-started/\nInstall Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers\nconda install -n base conda-libmamba-solver\nconda config --set solver libmamba\nDon’t install anything else in base."
-  },
-  {
-    "objectID": "posts/conda_config.html#my-envs",
-    "href": "posts/conda_config.html#my-envs",
-    "title": "conda config",
-    "section": "",
-    "text": "https://github.com/vuillaut/myenvs\nconda config --add channels vuillaut\nconda create -n jlab jlab"
-  },
-  {
-    "objectID": "posts/conda_config.html#jupyter-lab",
-    "href": "posts/conda_config.html#jupyter-lab",
-    "title": "conda config",
-    "section": "",
-    "text": "To add a conda env to the jupyter/ipython kernels:\nfunction addkernel(){\n  conda activate $1\n  ipython kernel install --name \"$1\" --user\n}\n\naddkernel myenv\nThis way you can run the jupyterlab interface without prefered plugins but run different computing kernels."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Personnal blog-like laboratory notebook.",
-    "section": "",
-    "text": "Docker desktop on MAC OSX using 100% CPU\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJun 1, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nSingularity and Conda\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nApr 18, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nRunning JupyterLab in a singularity container on MUST\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nMar 1, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nconda config\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJan 11, 2023\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nctapipe generate R1/DL0 HDF5\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nSep 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nanalyse LST-1 data\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 27, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nconda must config\n\n\n\n\n\n\n\nnotes\n\n\n\n\n\n\n\n\n\n\n\nJul 22, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nLST-1 data analysis worflow\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\n\n\n\n\n\n\n\nJul 1, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\n  \n\n\n\n\nCorrecting coma aberration bias\n\n\n\n\n\n\n\nnotes\n\n\ncta\n\n\n\n\nLST-1 study of the coma aberration bias correction\n\n\n\n\n\n\nJun 9, 2022\n\n\nThomas Vuillaume\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
