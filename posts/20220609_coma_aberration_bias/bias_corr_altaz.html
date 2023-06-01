@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,9 +20,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -121,7 +92,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -143,22 +115,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">Lab Notebook</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/vuillaut/labnotebook"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vuillaut/labnotebook" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -561,7 +535,16 @@ Let’s find the effective focal length that minimize the bias.</p>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    bias_az.append(np.rad2deg(np.mean(np.<span class="bu">abs</span>(bias))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>28.2 m</code></pre>
+<pre><code>28.2 m
+28.31111111111111 m
+28.42222222222222 m
+28.53333333333333 m
+28.644444444444442 m
+28.755555555555556 m
+28.866666666666667 m
+28.977777777777778 m
+29.08888888888889 m
+29.2 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
@@ -569,8 +552,8 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-3.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>28.31111111111111 m</code></pre>
+<div class="cell-output cell-output-display">
+<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-4.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-5.png" class="img-fluid"></p>
@@ -578,8 +561,8 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-6.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>28.42222222222222 m</code></pre>
+<div class="cell-output cell-output-display">
+<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-7.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-8.png" class="img-fluid"></p>
@@ -587,8 +570,8 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-9.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>28.53333333333333 m</code></pre>
+<div class="cell-output cell-output-display">
+<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-10.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-11.png" class="img-fluid"></p>
@@ -596,8 +579,8 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-12.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>28.644444444444442 m</code></pre>
+<div class="cell-output cell-output-display">
+<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-13.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-14.png" class="img-fluid"></p>
@@ -605,8 +588,8 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-15.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>28.755555555555556 m</code></pre>
+<div class="cell-output cell-output-display">
+<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-16.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-17.png" class="img-fluid"></p>
@@ -614,8 +597,8 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-18.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>28.866666666666667 m</code></pre>
+<div class="cell-output cell-output-display">
+<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-19.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-20.png" class="img-fluid"></p>
@@ -623,47 +606,20 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-18-output-21.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>28.977777777777778 m</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-23.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-24.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>29.08888888888889 m</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-26.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-27.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>29.2 m</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-29.png" class="img-fluid"></p>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="bias_corr_altaz_files/figure-html/cell-18-output-30.png" class="img-fluid"></p>
-</div>
 </div>
 <p>We can find the effective focal length that minimize the bias:</p>
 <div class="cell" data-execution_count="18">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.plot(focal_lengths, bias_alt, label<span class="op">=</span><span class="st">'alt'</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.plot(focal_lengths, bias_az, label<span class="op">=</span><span class="st">'az'</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Minimizing the bias'</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'effective focal length [m]'</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'bias [degrees]'</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.argmin(bias_alt) <span class="op">==</span> np.argmin(bias_az)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The focal length that minimize the bias: </span><span class="sc">{</span>focal_lengths[np.argmin(bias_alt)]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.plot(focal_lengths, bias_alt, label<span class="op">=</span><span class="st">'alt'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.plot(focal_lengths, bias_az, label<span class="op">=</span><span class="st">'az'</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Minimizing the bias'</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'effective focal length [m]'</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'bias [degrees]'</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> np.argmin(bias_alt) <span class="op">==</span> np.argmin(bias_az)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The focal length that minimize the bias: </span><span class="sc">{</span>focal_lengths[np.argmin(bias_alt)]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>The focal length that minimize the bias: 28.756 m</code></pre>
@@ -676,17 +632,17 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell" data-execution_count="19">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>params_patched <span class="op">=</span> patch_events(bright_events, focal_lengths[np.argmin(bias_alt)], plot<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>add_params(params_patched)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>params_patched <span class="op">=</span> patch_events(bright_events, focal_lengths[np.argmin(bias_alt)], plot<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>add_params(params_patched)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-execution_count="20">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> np.histogram_bin_edges(params_patched[<span class="st">'alpha'</span>].value, bins<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ii, low <span class="kw">in</span> <span class="bu">enumerate</span>(edges[:<span class="op">-</span><span class="dv">1</span>]):</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    selected_events <span class="op">=</span> params_patched[(low<span class="op">&lt;</span>bright_events[<span class="st">'alpha'</span>])<span class="op">&amp;</span>(params_patched[<span class="st">'alpha'</span>]<span class="op">&lt;</span>edges[ii<span class="op">+</span><span class="dv">1</span>])]</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    plot_all(selected_events)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> np.histogram_bin_edges(params_patched[<span class="st">'alpha'</span>].value, bins<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ii, low <span class="kw">in</span> <span class="bu">enumerate</span>(edges[:<span class="op">-</span><span class="dv">1</span>]):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    selected_events <span class="op">=</span> params_patched[(low<span class="op">&lt;</span>bright_events[<span class="st">'alpha'</span>])<span class="op">&amp;</span>(params_patched[<span class="st">'alpha'</span>]<span class="op">&lt;</span>edges[ii<span class="op">+</span><span class="dv">1</span>])]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    plot_all(selected_events)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
@@ -711,28 +667,28 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell" data-execution_count="21">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>selected_events <span class="op">=</span> params[(params[<span class="st">'intensity'</span>]<span class="op">&gt;</span><span class="dv">100</span>) <span class="op">&amp;</span> (params[<span class="st">'gammaness'</span>]<span class="op">&gt;</span><span class="fl">0.4</span>)]</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>selected_corr <span class="op">=</span> patch_events(selected_events, plot<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>selected_events <span class="op">=</span> params[(params[<span class="st">'intensity'</span>]<span class="op">&gt;</span><span class="dv">100</span>) <span class="op">&amp;</span> (params[<span class="st">'gammaness'</span>]<span class="op">&gt;</span><span class="fl">0.4</span>)]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>selected_corr <span class="op">=</span> patch_events(selected_events, plot<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-execution_count="22">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ctaplot.plot_angular_resolution_per_energy(selected_events[<span class="st">'mc_alt'</span>].quantity,</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'reco_alt'</span>].quantity,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'mc_az'</span>].quantity,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'reco_az'</span>].quantity,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'reco_energy'</span>].quantity,)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>ctaplot.plot_angular_resolution_per_energy(selected_corr[<span class="st">'mc_alt'</span>].quantity,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'reco_alt'</span>].quantity,</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'mc_az'</span>].quantity,</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'reco_az'</span>].quantity,</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'reco_energy'</span>].quantity,)</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>ctaplot.plot_angular_resolution_cta_requirement(<span class="st">'north'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ctaplot.plot_angular_resolution_per_energy(selected_events[<span class="st">'mc_alt'</span>].quantity,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'reco_alt'</span>].quantity,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'mc_az'</span>].quantity,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'reco_az'</span>].quantity,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                                           selected_events[<span class="st">'reco_energy'</span>].quantity,)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>ctaplot.plot_angular_resolution_per_energy(selected_corr[<span class="st">'mc_alt'</span>].quantity,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'reco_alt'</span>].quantity,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'mc_az'</span>].quantity,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'reco_az'</span>].quantity,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                                           selected_corr[<span class="st">'reco_energy'</span>].quantity,)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>ctaplot.plot_angular_resolution_cta_requirement(<span class="st">'north'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>(0.0, 0.4)</code></pre>
@@ -747,68 +703,68 @@ Let’s find the effective focal length that minimize the bias.</p>
 <div class="cell" data-execution_count="23">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">'dl2_gamma_20deg_180deg_off0.4deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analyis(filename):</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> read_table(filename, path<span class="op">=</span>dl2_params_lstcam_key)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    add_params(params)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bright_events = params[(params['intensity']&gt;5000)]</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    bright_events <span class="op">=</span> params[(params[<span class="st">'intensity'</span>]<span class="op">&gt;</span><span class="dv">50</span>) <span class="op">&amp;</span> ((params[<span class="st">'gammaness'</span>]<span class="op">&gt;</span><span class="fl">0.7</span>))]</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    bright_events_corr <span class="op">=</span> patch_events(bright_events, true_focal_length<span class="op">=</span><span class="fl">29.04</span><span class="op">*</span>u.m, plot<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">5</span>))</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    plot_psf(bright_events_corr, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    opt<span class="op">=</span><span class="bu">dict</span>(bins<span class="op">=</span><span class="dv">50</span>,  histtype<span class="op">=</span><span class="st">'step'</span>, <span class="bu">range</span><span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))</span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_theta2(bright_events[<span class="st">'mc_alt'</span>].quantity,</span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>                       bright_events[<span class="st">'reco_alt'</span>].quantity,</span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>                       bright_events[<span class="st">'mc_az'</span>].quantity,</span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>                       bright_events[<span class="st">'reco_az'</span>].quantity,</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>                        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>                        label<span class="op">=</span><span class="st">'no bias correction'</span>,</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>                        <span class="op">**</span>opt</span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>                       )</span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_theta2(bright_events_corr[<span class="st">'mc_alt'</span>].quantity,</span>
-<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>                   bright_events_corr[<span class="st">'reco_alt'</span>].quantity,</span>
-<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>                   bright_events_corr[<span class="st">'mc_az'</span>].quantity,</span>
-<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>                   bright_events_corr[<span class="st">'reco_az'</span>].quantity,</span>
-<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>                        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
-<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>                    label<span class="op">=</span><span class="st">'bias corrected'</span>,</span>
-<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>                        <span class="op">**</span>opt</span>
-<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>                   )</span>
-<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].legend()</span>
-<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_angular_resolution_per_energy(bright_events[<span class="st">'mc_alt'</span>].quantity,</span>
-<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'reco_alt'</span>].quantity,</span>
-<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'mc_az'</span>].quantity,</span>
-<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'reco_az'</span>].quantity,</span>
-<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'reco_energy'</span>].quantity,</span>
-<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>                                                  ax<span class="op">=</span>axes[<span class="op">-</span><span class="dv">1</span>],</span>
-<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>                                             label<span class="op">=</span><span class="st">'no bias correction'</span>,  </span>
-<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>                                              )</span>
-<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_angular_resolution_per_energy(bright_events_corr[<span class="st">'mc_alt'</span>].quantity,</span>
-<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'reco_alt'</span>].quantity,</span>
-<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'mc_az'</span>].quantity,</span>
-<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'reco_az'</span>].quantity,</span>
-<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'reco_energy'</span>].quantity,</span>
-<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>                                               ax<span class="op">=</span>axes[<span class="op">-</span><span class="dv">1</span>],</span>
-<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>                                               label<span class="op">=</span><span class="st">'bias corrected'</span>,</span>
-<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>                                               <span class="co"># ls='--'</span></span>
-<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>                                              )</span>
-<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_angular_resolution_cta_requirement(<span class="st">'north'</span>, color<span class="op">=</span><span class="st">'black'</span>, ax<span class="op">=</span>axes[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>    axes[<span class="op">-</span><span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">'dl2_gamma_20deg_180deg_off0.4deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analyis(filename):</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> read_table(filename, path<span class="op">=</span>dl2_params_lstcam_key)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    add_params(params)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># bright_events = params[(params['intensity']&gt;5000)]</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    bright_events <span class="op">=</span> params[(params[<span class="st">'intensity'</span>]<span class="op">&gt;</span><span class="dv">50</span>) <span class="op">&amp;</span> ((params[<span class="st">'gammaness'</span>]<span class="op">&gt;</span><span class="fl">0.7</span>))]</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    bright_events_corr <span class="op">=</span> patch_events(bright_events, true_focal_length<span class="op">=</span><span class="fl">29.04</span><span class="op">*</span>u.m, plot<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">5</span>))</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    plot_psf(bright_events_corr, ax<span class="op">=</span>axes[<span class="dv">0</span>])</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    opt<span class="op">=</span><span class="bu">dict</span>(bins<span class="op">=</span><span class="dv">50</span>,  histtype<span class="op">=</span><span class="st">'step'</span>, <span class="bu">range</span><span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_theta2(bright_events[<span class="st">'mc_alt'</span>].quantity,</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>                       bright_events[<span class="st">'reco_alt'</span>].quantity,</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>                       bright_events[<span class="st">'mc_az'</span>].quantity,</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>                       bright_events[<span class="st">'reco_az'</span>].quantity,</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>                        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>                        label<span class="op">=</span><span class="st">'no bias correction'</span>,</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>                        <span class="op">**</span>opt</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_theta2(bright_events_corr[<span class="st">'mc_alt'</span>].quantity,</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>                   bright_events_corr[<span class="st">'reco_alt'</span>].quantity,</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>                   bright_events_corr[<span class="st">'mc_az'</span>].quantity,</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>                   bright_events_corr[<span class="st">'reco_az'</span>].quantity,</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>                        ax<span class="op">=</span>axes[<span class="dv">1</span>],</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>                    label<span class="op">=</span><span class="st">'bias corrected'</span>,</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>                        <span class="op">**</span>opt</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>                   )</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">1</span>].legend()</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_angular_resolution_per_energy(bright_events[<span class="st">'mc_alt'</span>].quantity,</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'reco_alt'</span>].quantity,</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'mc_az'</span>].quantity,</span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'reco_az'</span>].quantity,</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>                                           bright_events[<span class="st">'reco_energy'</span>].quantity,</span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>                                                  ax<span class="op">=</span>axes[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>                                             label<span class="op">=</span><span class="st">'no bias correction'</span>,  </span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>                                              )</span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_angular_resolution_per_energy(bright_events_corr[<span class="st">'mc_alt'</span>].quantity,</span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'reco_alt'</span>].quantity,</span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'mc_az'</span>].quantity,</span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'reco_az'</span>].quantity,</span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>                                               bright_events_corr[<span class="st">'reco_energy'</span>].quantity,</span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>                                               ax<span class="op">=</span>axes[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>                                               label<span class="op">=</span><span class="st">'bias corrected'</span>,</span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>                                               <span class="co"># ls='--'</span></span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>                                              )</span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>    ctaplot.plot_angular_resolution_cta_requirement(<span class="st">'north'</span>, color<span class="op">=</span><span class="st">'black'</span>, ax<span class="op">=</span>axes[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>    axes[<span class="op">-</span><span class="dv">1</span>].set_ylim(<span class="dv">0</span>, <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell" data-execution_count="24">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>analyis(filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>analyis(filename)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <p><img src="bias_corr_altaz_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
@@ -846,9 +802,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -913,6 +883,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

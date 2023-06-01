@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thomas Vuillaume">
-<meta name="dcterms.date" content="2023-01-11">
+<meta name="dcterms.date" content="2023-06-01">
 
-<title>Lab Notebook - conda config</title>
+<title>Lab Notebook - Docker desktop on MAC OSX using 100% CPU</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page">
-      <h1 class="title">conda config</h1>
+      <h1 class="title">Docker desktop on MAC OSX using 100% CPU</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">notes</div>
               </div>
@@ -123,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">2023-01-11</p>
+        <p class="date">June 1, 2023</p>
       </div>
     </div>
     
@@ -141,37 +141,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="personnal-conda-config." class="level1">
-<h1>Personnal conda config.</h1>
-<p>May evolve in time.</p>
-<section id="libmamba-solver-for-conda" class="level2">
-<h2 class="anchored" data-anchor-id="libmamba-solver-for-conda">libmamba solver for conda</h2>
-<p>See https://conda.github.io/conda-libmamba-solver/getting-started/</p>
-<p>Install Anaconda or Miniconda: https://docs.conda.io/en/latest/miniconda.html#linux-installers</p>
-<pre><code>conda install -n base conda-libmamba-solver
-conda config --set solver libmamba</code></pre>
-<p>Don’t install anything else in base.</p>
-</section>
-<section id="my-envs" class="level2">
-<h2 class="anchored" data-anchor-id="my-envs">My envs</h2>
-<p>https://github.com/vuillaut/myenvs</p>
-<pre><code>conda config --add channels vuillaut
-conda create -n jlab jlab</code></pre>
-</section>
-<section id="jupyter-lab" class="level2">
-<h2 class="anchored" data-anchor-id="jupyter-lab">Jupyter lab</h2>
-<p>To add a conda env to the jupyter/ipython kernels:</p>
-<pre><code>function addkernel(){
-  conda activate $1
-  ipython kernel install --name "$1" --user
-}
-
-addkernel myenv</code></pre>
-<p>This way you can run the jupyterlab interface without prefered plugins but run different computing kernels.</p>
+<p>Solved the problem doing:</p>
+<p>Open the config in Docker desktop.</p>
+<ul>
+<li><p>Add <code>debug: false</code> in Docker Engine config</p></li>
+<li><p>Turn off <code>Use gRPC FUSE</code> for file sharing</p></li>
+<li><p>Turn off <code>Send usage statistics</code></p></li>
+</ul>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
