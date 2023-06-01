@@ -1,0 +1,22 @@
+---
+title: "Docker desktop on MAC OSX using 100% CPU"
+author: "Thomas Vuillaume"
+date: "2023-06-01"
+categories: [notes]
+format:
+  html:
+    code-fold: true
+    theme: minty
+    page-layout: full
+---
+
+Solved the problem doing:
+
+Open the config in Docker desktop.
+
+- Add `debug: false` in Docker Engine config
+
+- Turn off `Use gRPC FUSE` for file sharing
+
+- Turn off `Send usage statistics`
+
