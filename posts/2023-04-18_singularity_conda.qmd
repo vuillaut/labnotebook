@@ -1,0 +1,51 @@
+---
+title: "Singularity and Conda"
+author: "Thomas Vuillaume"
+date: "2023-04-18"
+categories: [notes]
+format:
+  html:
+    code-fold: true
+    theme: minty
+    page-layout: full
+---
+
+
+Based on the excellent post https://geniac.readthedocs.io/en/version-2.4.1/conda.html
+
+```
+Bootstrap: docker
+From: gitlab-registry.in2p3.fr/gammalearn/gammalearn/mamba:master
+
+%post
+    conda create -n glearn astropy \
+    && conda clean -a \
+    && echo -e "#! /bin/bash\n\n# script to activate the conda environment" > ~/.bashrc \
+    && conda init bash \
+    && echo -e "\nconda activate glearn" >> ~/.bashrc \
+    && mkdir -p /opt/etc/ && cp ~/.bashrc /opt/etc/bashrc
+
+
+%environment
+    # Activate Conda environment
+    export PATH="$HOME/miniconda/envs/glearn/bin:$PATH"
+    source /opt/etc/bashrc
+```
+
+```
+Bootstrap: docker
+From: gitlab-registry.in2p3.fr/gammalearn/gammalearn:v0.10
+
+%post
+    echo -e "#! /bin/bash\n\n# script to activate the conda environment" > ~/.bashrc \
+    && conda init bash \
+    && echo -e "\nconda activate glearn" >> ~/.bashrc \
+    && mkdir -p /opt/etc/ && cp ~/.bashrc /opt/etc/bashrc
+
+
+%environment
+    # Activate Conda environment
+    export PATH="/opt/conda/envs/glearn/bin:$PATH"
+    source /opt/etc/bashrc
+```
+
