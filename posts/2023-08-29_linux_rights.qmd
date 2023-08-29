@@ -1,0 +1,41 @@
+---
+title: "Setting linux directories writing rights to users"
+author: "Thomas Vuillaume"
+date: "2023-08-29"
+categories: [notes]
+format:
+  html:
+    code-fold: true
+    theme: minty
+    page-layout: full
+---
+
+# problem
+
+In `workdir`, a directory I created
+
+I want to:
+- specific user named `user1` to be able to create dirs and write his own files in /workdir/
+- I keep writing and reading rights in `/workdir/` and all future subdirs and files
+- user1 is not able to modify my files and dirs in `/workdir/`
+
+I can't create a new group or deal with groups
+
+
+# how to solve
+
+Add `umask 002` in my `.bashrc`
+
+
+
+```
+cd /workdir
+setfacl -d -m u:your_username:rwx .
+
+setfacl -m u:user1:rwx .
+setfacl -d -m u:user1:rwx .
+
+chmod +t .
+```
+
+
