@@ -20,3 +20,7 @@ Open the config in Docker desktop.
 
 - Turn off `Send usage statistics`
 
+
+Note: from ~July 2023, docker desktop on mac osx has an experimental feature _Resource Saver mode: when this is set, Docker will use minimal CPU and memory when idle_
+To enable: Settings / Features in development / Access experimental features
+
