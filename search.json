@@ -74,7 +74,7 @@
     "href": "posts/2023-08-29_linux_rights.html",
     "title": "Setting linux directories writing rights to users",
     "section": "",
-    "text": "problem\nIn workdir, a directory I created\nI want to: - specific user named user1 to be able to create dirs and write his own files in /workdir/ - I keep writing and reading rights in /workdir/ and all future subdirs and files - user1 is not able to modify my files and dirs in /workdir/\nI can’t create a new group or deal with groups\n\n\nhow to solve\nAdd umask 002 in my .bashrc\ncd /workdir\nsetfacl -d -m u:your_username:rwx .\n\nsetfacl -m u:user1:rwx .\nsetfacl -d -m u:user1:rwx .\n\nchmod +t ."
+    "text": "problem\nIn workdir, a directory I created\nI want to:\n\nspecific user named user1 to be able to create dirs and write his own files in /workdir/\nI keep writing and reading rights in /workdir/ and all future subdirs and files\nuser1 is not able to modify my files and dirs in /workdir/\n\nI can’t create a new group or deal with groups\n\n\nhow to solve\nAdd umask 002 in my .bashrc\ncd /workdir\nsetfacl -d -m u:your_username:rwx .\n\nsetfacl -m u:user1:rwx .\nsetfacl -d -m u:user1:rwx .\n\nchmod +t ."
   },
   {
     "objectID": "posts/2022-03-01_singularity_jupyterlab_must.html",

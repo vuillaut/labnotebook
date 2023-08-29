@@ -23,7 +23,12 @@
 <section id="problem" class="level1">
 <h1>problem</h1>
 <p>In <code>workdir</code>, a directory I created</p>
-<p>I want to: - specific user named <code>user1</code> to be able to create dirs and write his own files in /workdir/ - I keep writing and reading rights in <code>/workdir/</code> and all future subdirs and files - user1 is not able to modify my files and dirs in <code>/workdir/</code></p>
+<p>I want to:</p>
+<ul>
+<li>specific user named <code>user1</code> to be able to create dirs and write his own files in /workdir/</li>
+<li>I keep writing and reading rights in <code>/workdir/</code> and all future subdirs and files</li>
+<li>user1 is not able to modify my files and dirs in <code>/workdir/</code></li>
+</ul>
 <p>I can’t create a new group or deal with groups</p>
 </section>
 <section id="how-to-solve" class="level1">
