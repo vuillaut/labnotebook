@@ -9,8 +9,42 @@
 <link>https://vuillaut.github.io/labnotebook/index.html</link>
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
-<generator>quarto-1.3.361</generator>
-<lastBuildDate>Thu, 01 Jun 2023 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.3.450</generator>
+<lastBuildDate>Tue, 29 Aug 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Setting linux directories writing rights to users</title>
+  <dc:creator>Thomas Vuillaume</dc:creator>
+  <link>https://vuillaut.github.io/labnotebook/posts/2023-08-29_linux_rights.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="problem" class="level1">
+<h1>problem</h1>
+<p>In <code>workdir</code>, a directory I created</p>
+<p>I want to: - specific user named <code>user1</code> to be able to create dirs and write his own files in /workdir/ - I keep writing and reading rights in <code>/workdir/</code> and all future subdirs and files - user1 is not able to modify my files and dirs in <code>/workdir/</code></p>
+<p>I can’t create a new group or deal with groups</p>
+</section>
+<section id="how-to-solve" class="level1">
+<h1>how to solve</h1>
+<p>Add <code>umask 002</code> in my <code>.bashrc</code></p>
+<pre><code>cd /workdir
+setfacl -d -m u:your_username:rwx .
+
+setfacl -m u:user1:rwx .
+setfacl -d -m u:user1:rwx .
+
+chmod +t .</code></pre>
+
+
+</section>
+
+ ]]></description>
+  <category>notes</category>
+  <guid>https://vuillaut.github.io/labnotebook/posts/2023-08-29_linux_rights.html</guid>
+  <pubDate>Tue, 29 Aug 2023 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Docker desktop on MAC OSX using 100% CPU</title>
   <dc:creator>Thomas Vuillaume</dc:creator>

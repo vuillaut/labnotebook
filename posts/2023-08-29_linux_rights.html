@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thomas Vuillaume">
-<meta name="dcterms.date" content="2023-04-18">
+<meta name="dcterms.date" content="2023-08-29">
 
-<title>Lab Notebook - Singularity and Conda</title>
+<title>Lab Notebook - Setting linux directories writing rights to users</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page">
-      <h1 class="title">Singularity and Conda</h1>
+      <h1 class="title">Setting linux directories writing rights to users</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">notes</div>
               </div>
@@ -123,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 18, 2023</p>
+        <p class="date">August 29, 2023</p>
       </div>
     </div>
     
@@ -141,39 +141,25 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Based on the excellent post https://geniac.readthedocs.io/en/version-2.4.1/conda.html</p>
-<pre><code>Bootstrap: docker
-From: gitlab-registry.in2p3.fr/gammalearn/gammalearn/mamba:master
+<section id="problem" class="level1">
+<h1>problem</h1>
+<p>In <code>workdir</code>, a directory I created</p>
+<p>I want to: - specific user named <code>user1</code> to be able to create dirs and write his own files in /workdir/ - I keep writing and reading rights in <code>/workdir/</code> and all future subdirs and files - user1 is not able to modify my files and dirs in <code>/workdir/</code></p>
+<p>I can’t create a new group or deal with groups</p>
+</section>
+<section id="how-to-solve" class="level1">
+<h1>how to solve</h1>
+<p>Add <code>umask 002</code> in my <code>.bashrc</code></p>
+<pre><code>cd /workdir
+setfacl -d -m u:your_username:rwx .
 
-%post
-    conda create -n glearn astropy \
-    &amp;&amp; conda clean -a \
-    &amp;&amp; echo -e "#! /bin/bash\n\n# script to activate the conda environment" &gt; ~/.bashrc \
-    &amp;&amp; conda init bash \
-    &amp;&amp; echo -e "\nconda activate glearn" &gt;&gt; ~/.bashrc \
-    &amp;&amp; mkdir -p /opt/etc/ &amp;&amp; cp ~/.bashrc /opt/etc/bashrc
+setfacl -m u:user1:rwx .
+setfacl -d -m u:user1:rwx .
 
-
-%environment
-    # Activate Conda environment
-    export PATH="$HOME/miniconda/envs/glearn/bin:$PATH"
-    source /opt/etc/bashrc</code></pre>
-<pre><code>Bootstrap: docker
-From: gitlab-registry.in2p3.fr/gammalearn/gammalearn:v0.10
-
-%post
-    echo -e "#! /bin/bash\n\n# script to activate the conda environment" &gt; ~/.bashrc \
-    &amp;&amp; conda init bash \
-    &amp;&amp; echo -e "\nconda activate glearn" &gt;&gt; ~/.bashrc \
-    &amp;&amp; mkdir -p /opt/etc/ &amp;&amp; cp ~/.bashrc /opt/etc/bashrc
+chmod +t .</code></pre>
 
 
-%environment
-    # Activate Conda environment
-    export PATH="/opt/conda/envs/glearn/bin:$PATH"
-    source /opt/etc/bashrc</code></pre>
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
