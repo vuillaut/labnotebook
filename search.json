@@ -11,7 +11,7 @@
     "href": "posts/2023-06-01_docker_cpu.html",
     "title": "Docker desktop on MAC OSX using 100% CPU",
     "section": "",
-    "text": "Solved the problem doing:\nOpen the config in Docker desktop.\n\nAdd debug: false in Docker Engine config\nTurn off Use gRPC FUSE for file sharing\nTurn off Send usage statistics"
+    "text": "Solved the problem doing:\nOpen the config in Docker desktop.\n\nAdd debug: false in Docker Engine config\nTurn off Use gRPC FUSE for file sharing\nTurn off Send usage statistics\n\nNote: from ~July 2023, docker desktop on mac osx has an experimental feature Resource Saver mode: when this is set, Docker will use minimal CPU and memory when idle To enable: Settings / Features in development / Access experimental features"
   },
   {
     "objectID": "posts/2022-07-27_analyse_LST-1_data.html",
