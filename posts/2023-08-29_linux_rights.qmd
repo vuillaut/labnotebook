@@ -15,6 +15,7 @@ format:
 In `workdir`, a directory I created
 
 I want to:
+
 - specific user named `user1` to be able to create dirs and write his own files in /workdir/
 - I keep writing and reading rights in `/workdir/` and all future subdirs and files
 - user1 is not able to modify my files and dirs in `/workdir/`
