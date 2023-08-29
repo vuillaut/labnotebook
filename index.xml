@@ -25,7 +25,7 @@
 <p>In <code>workdir</code>, a directory I created</p>
 <p>I want to:</p>
 <ul>
-<li>specific user named <code>user1</code> to be able to create dirs and write his own files in /workdir/</li>
+<li>specific user named <code>user1</code> to be able to create dirs and write his own files in <code>/workdir/</code></li>
 <li>I keep writing and reading rights in <code>/workdir/</code> and all future subdirs and files</li>
 <li>user1 is not able to modify my files and dirs in <code>/workdir/</code></li>
 </ul>
