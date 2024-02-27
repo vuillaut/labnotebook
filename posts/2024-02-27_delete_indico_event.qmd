@@ -1,0 +1,47 @@
+---
+title: "Delete indico events using its API.qmd"
+author: "Thomas Vuillaume"
+date: "2024-02-27"
+categories: [notes]
+format:
+  html:
+    code-fold: true
+    theme: minty
+    page-layout: full
+---
+
+
+1. Get your indico api token from your user account (settings)
+
+# list events in a category
+
+```
+import requests
+from datetime import datetime
+
+base_url = 'https://indico.in2p3.fr'
+category_id = 141
+
+# Headers for authentication
+headers = {
+    'Authorization': f'Bearer {indico_token}'
+}
+
+params = {
+    'from': '2024-03-04',
+    'to': '2024-12-31',
+    'pretty': 'yes'
+}
+
+response = requests.get(f"{base_url}/export/categ/{category_id}.json", headers=headers, params=params)
+events = response.json()
+
+for event in events['results']:
+    print(f"Event ID: {event['id']}, Title: {event['title']}")
+```
+
+# deleting an event
+
+```
+requests.post(f"https://indico.in2p3.fr/event/{event['id']}/manage/delete", headers=headers)
+```
