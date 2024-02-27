@@ -6,16 +6,67 @@
       version="2.0">
 <channel>
 <title>Lab Notebook</title>
-<link>https://vuillaut.github.io/labnotebook/index.html</link>
+<link>https://vuillaut.github.io/labnotebook/</link>
 <atom:link href="https://vuillaut.github.io/labnotebook/index.xml" rel="self" type="application/rss+xml"/>
 <description>Personnal blog-like laboratory notebook.</description>
-<generator>quarto-1.3.450</generator>
-<lastBuildDate>Tue, 29 Aug 2023 00:00:00 GMT</lastBuildDate>
+<generator>quarto-1.4.550</generator>
+<lastBuildDate>Tue, 27 Feb 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Delete indico events using its API.qmd</title>
+  <dc:creator>Thomas Vuillaume</dc:creator>
+  <link>https://vuillaut.github.io/labnotebook/posts/2024-02-27_delete_indico_event.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<ol type="1">
+<li>Get your indico api token from your user account (settings)</li>
+</ol>
+<section id="list-events-in-a-category" class="level1">
+<h1>list events in a category</h1>
+<pre><code>import requests
+from datetime import datetime
+
+base_url = 'https://indico.in2p3.fr'
+category_id = 141
+
+# Headers for authentication
+headers = {
+    'Authorization': f'Bearer {indico_token}'
+}
+
+params = {
+    'from': '2024-03-04',
+    'to': '2024-12-31',
+    'pretty': 'yes'
+}
+
+response = requests.get(f"{base_url}/export/categ/{category_id}.json", headers=headers, params=params)
+events = response.json()
+
+for event in events['results']:
+    print(f"Event ID: {event['id']}, Title: {event['title']}")</code></pre>
+</section>
+<section id="deleting-an-event" class="level1">
+<h1>deleting an event</h1>
+<pre><code>requests.post(f"https://indico.in2p3.fr/event/{event['id']}/manage/delete", headers=headers)</code></pre>
+
+
+</section>
+
+ ]]></description>
+  <category>notes</category>
+  <guid>https://vuillaut.github.io/labnotebook/posts/2024-02-27_delete_indico_event.html</guid>
+  <pubDate>Tue, 27 Feb 2024 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Setting linux directories writing rights to users</title>
   <dc:creator>Thomas Vuillaume</dc:creator>
   <link>https://vuillaut.github.io/labnotebook/posts/2023-08-29_linux_rights.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -59,6 +110,7 @@ chmod +t .</code></pre>
 
 
 
+
 <p>Solved the problem doing:</p>
 <p>Open the config in Docker desktop.</p>
 <ul>
@@ -80,6 +132,7 @@ chmod +t .</code></pre>
   <dc:creator>Thomas Vuillaume</dc:creator>
   <link>https://vuillaut.github.io/labnotebook/posts/2023-04-18_singularity_conda.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -128,6 +181,7 @@ From: gitlab-registry.in2p3.fr/gammalearn/gammalearn:v0.10
   <dc:creator>Thomas Vuillaume</dc:creator>
   <link>https://vuillaut.github.io/labnotebook/posts/2022-03-01_singularity_jupyterlab_must.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -198,6 +252,7 @@ From: continuumio/anaconda3:latest
 
 
 
+
 <section id="personnal-conda-config." class="level1">
 <h1>Personnal conda config.</h1>
 <p>May evolve in time.</p>
@@ -244,6 +299,7 @@ addkernel myenv</code></pre>
 
 
 
+
 <section id="ctapipe-generate-hdf5-with-r1dl0-waveforms" class="level1">
 <h1>ctapipe generate HDF5 with R1/DL0 waveforms</h1>
 <pre><code>ctapipe-quickstart</code></pre>
@@ -273,6 +329,7 @@ addkernel myenv</code></pre>
   <dc:creator>Thomas Vuillaume</dc:creator>
   <link>https://vuillaut.github.io/labnotebook/posts/2022-07-27_analyse_LST-1_data.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -335,6 +392,7 @@ addkernel myenv</code></pre>
 
 
 
+
 <section id="use-shared-conda" class="level1">
 <h1>Use shared conda</h1>
 <pre><code>__conda_setup="$('/usr/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)"
@@ -373,9 +431,11 @@ channels:
 
 
 
-<div class="cell">
+
+<div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
+<p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
 
@@ -416,6 +476,7 @@ channels:
 
 </pre>
 </div>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
@@ -439,8 +500,9 @@ channels:
 
 
 
-<div class="cell" data-execution_count="1">
-<details>
+
+<div id="b680afcf-7ba3-4d96-9168-957d856e064a" class="cell" data-execution_count="1">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
@@ -493,8 +555,8 @@ background-color: null;
 font-style: inherit;">'notebook'</span>)</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="2">
-<details>
+<div id="5d3c2e1c-f696-418b-ad3a-d7cec56eda94" class="cell" data-execution_count="2">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -512,15 +574,14 @@ background-color: null;
 font-style: inherit;">=</span>dl2_params_lstcam_key)</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="3">
-<details>
+<div id="d7fe6dc3-d6eb-4474-be1a-7b0a0ff4de3a" class="cell" data-execution_count="3">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">params[:<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">4</span>]</span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="3">
-
 <div><i>Table length=4</i>
 <table id="table140318220074384" class="table-striped table-bordered table-condensed">
 <thead><tr><th>obs_id</th><th>event_id</th><th>intensity</th><th>log_intensity</th><th>x</th><th>y</th><th>r</th><th>phi</th><th>length</th><th>length_uncertainty</th><th>width</th><th>width_uncertainty</th><th>psi</th><th>skewness</th><th>kurtosis</th><th>time_gradient</th><th>intercept</th><th>leakage_intensity_width_1</th><th>leakage_intensity_width_2</th><th>leakage_pixels_width_1</th><th>leakage_pixels_width_2</th><th>n_pixels</th><th>concentration_cog</th><th>concentration_core</th><th>concentration_pixel</th><th>n_islands</th><th>alt_tel</th><th>az_tel</th><th>calibration_id</th><th>mc_energy</th><th>log_mc_energy</th><th>mc_alt</th><th>mc_az</th><th>mc_core_x</th><th>mc_core_y</th><th>mc_h_first_int</th><th>mc_type</th><th>mc_az_tel</th><th>mc_alt_tel</th><th>mc_x_max</th><th>mc_core_distance</th><th>wl</th><th>tel_id</th><th>tel_pos_x</th><th>tel_pos_y</th><th>tel_pos_z</th><th>trigger_type</th><th>trigger_time</th><th>event_type</th><th>disp_dx</th><th>disp_dy</th><th>disp_norm</th><th>disp_angle</th><th>disp_sign</th><th>src_x</th><th>src_y</th><th>log_reco_energy</th><th>reco_energy</th><th>reco_disp_norm</th><th>reco_disp_sign</th><th>reco_disp_dx</th><th>reco_disp_dy</th><th>reco_src_x</th><th>reco_src_y</th><th>signed_time_gradient</th><th>signed_skewness</th><th>reco_alt</th><th>reco_az</th><th>reco_type</th><th>gammaness</th></tr></thead>
@@ -532,8 +593,8 @@ font-style: inherit;">4</span>]</span></code></pre></div>
 </tbody></table></div>
 </div>
 </div>
-<div class="cell" data-execution_count="4">
-<details>
+<div id="c93be0d3-e91d-4b7d-8e11-0a8551b9a3e9" class="cell" data-execution_count="4">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -694,14 +755,14 @@ background-color: null;
 font-style: inherit;">'src_x'</span>])</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="5">
-<details>
+<div id="b049abba-72da-4995-81cb-1e53fd206ef1" class="cell" data-execution_count="5">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">add_params(params)</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="6">
-<details>
+<div id="743e9055-963f-4307-b943-0eef24d951c8" class="cell" data-execution_count="6">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -756,11 +817,15 @@ background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
-<details>
+</div>
+<div id="f96feb7a-a683-4c0b-b159-70556d040cf1" class="cell" data-execution_count="7">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -856,11 +921,15 @@ background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="8">
-<details>
+</div>
+<div id="d1e4734e-de6b-4aaa-ae67-f9f2f21797f3" class="cell" data-execution_count="8">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -990,11 +1059,15 @@ background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="9">
-<details>
+</div>
+<div id="b97cf6a3-8e3d-4db9-b697-c4fc14fc2012" class="cell" data-execution_count="9">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1155,14 +1228,22 @@ background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-execution_count="10">
-<details>
+</div>
+<div id="265248b6-173f-40c8-b22e-c790f0b490dc" class="cell" data-execution_count="10">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1205,8 +1286,8 @@ background-color: null;
 font-style: inherit;">4.</span>)]</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="11">
-<details>
+<div id="4e5db9c7-7a27-4087-b4a5-d32b1c46e0a0" class="cell" data-execution_count="11">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1253,8 +1334,8 @@ font-style: inherit;">4</span>])</span>
 <span id="cb11-9">    plt.show()</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="12">
-<details>
+<div id="c474fcb3-9f6d-48df-b673-b13e5b7ed054" class="cell" data-execution_count="12">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><span class="bu" style="color: null;
 background-color: null;
@@ -1267,13 +1348,17 @@ font-style: inherit;">"Bright events"</span>)</span>
 <pre><code>Bright events</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="bright-events-in-quarters" class="level3">
 <h3 class="anchored" data-anchor-id="bright-events-in-quarters">Bright events in quarters</h3>
-<div class="cell" data-execution_count="13">
-<details>
+<div id="478dc014-3d34-4317-8dd6-f51bc2dc529e" class="cell" data-execution_count="13">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">edges <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1315,27 +1400,47 @@ font-style: inherit;">1</span>])]</span>
 <span id="cb14-4">    plot_all(selected_events)</span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-3.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-4.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-5.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-14-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="correcting-the-bias" class="level2">
 <h2 class="anchored" data-anchor-id="correcting-the-bias">Correcting the bias</h2>
 <p>We can reconstruct the source position in the sky with a different focal length. To visualize the bias, we can plot it as a function of alpha, the angle between the event position and the X-axis</p>
-<div class="cell" data-execution_count="14">
-<details>
+<div id="fa11764b-8120-4748-95ff-d47114f53575" class="cell" data-execution_count="14">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="im" style="color: #00769E;
 background-color: null;
@@ -1344,8 +1449,8 @@ background-color: null;
 font-style: inherit;">import</span> reco_source_position_sky</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="15">
-<details>
+<div id="0e845456-d5ad-48f3-96e8-eedea2cb394f" class="cell" data-execution_count="15">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="kw" style="color: #003B4F;
 background-color: null;
@@ -1530,8 +1635,8 @@ font-style: inherit;">return</span> events_corr</span>
 <span id="cb16-55">    </span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="16">
-<details>
+<div id="44e46e91-0a62-43e4-9756-d8477da6d457" class="cell" data-execution_count="16">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">params_patched <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1540,16 +1645,24 @@ background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-17-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can see that a bias is still present.<br>
 Let’s find the effective focal length that minimize the bias.</p>
-<div class="cell" data-execution_count="17">
-<details>
+<div id="6f3b9867-12a7-4d6c-9f88-34a717bb97f1" class="cell" data-scrolled="false" data-execution_count="17">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">focal_lengths <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1623,69 +1736,149 @@ font-style: inherit;">abs</span>(bias))))</span></code></pre></div>
 29.2 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-3.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-4.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-5.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-6.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-7.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-8.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-9.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-10.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-10.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-11.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-12.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-13.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-14.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-14.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-15.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-15.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-16.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-16.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-17.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-17.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-18.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-18.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-19.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-19.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-20.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-20.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-21.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-18-output-21.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can find the effective focal length that minimize the bias:</p>
-<div class="cell" data-execution_count="18">
-<details>
+<div id="c2cf25ee-04a8-4cde-9cc4-127a2cd04a2b" class="cell" data-execution_count="18">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">plt.plot(focal_lengths, bias_alt, label<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1729,12 +1922,16 @@ font-style: inherit;">"</span>)</span></code></pre></div>
 <pre><code>The focal length that minimize the bias: 28.756 m</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-19-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Let’s see the results with that focal length:</p>
-<div class="cell" data-execution_count="19">
-<details>
+<div id="05d50ae1-29e7-4895-8bb7-b799fec203b3" class="cell" data-execution_count="19">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1">params_patched <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1748,8 +1945,8 @@ font-style: inherit;">;</span></span>
 <span id="cb22-2">add_params(params_patched)</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="20">
-<details>
+<div id="119b9cdc-17fb-4cb5-ba23-5eeb3580422d" class="cell" data-execution_count="20">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1">edges <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1791,27 +1988,47 @@ font-style: inherit;">1</span>])]</span>
 <span id="cb23-4">    plot_all(selected_events)</span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-3.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-4.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-5.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-21-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The alpha-dependence is now gone</p>
 </section>
 <section id="angular-resolution-before-and-after" class="level2">
 <h2 class="anchored" data-anchor-id="angular-resolution-before-and-after">Angular resolution before and after</h2>
-<div class="cell" data-execution_count="21">
-<details>
+<div id="9b5698ef" class="cell" data-execution_count="21">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1">selected_events <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1839,8 +2056,8 @@ background-color: null;
 font-style: inherit;">False</span>)</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="22">
-<details>
+<div id="c0b634fe-7af2-4e7f-8bb9-5476c8d7be55" class="cell" data-execution_count="22">
+<details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1">ctaplot.plot_angular_resolution_per_energy(selected_events[<span class="st" style="color: #20794D;
 background-color: null;
@@ -1888,38 +2105,39 @@ font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.4</span>)</span></code></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="22">
-<pre><code>(0.0, 0.4)</code></pre>
-</div>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="testing-the-same-correction-on-point-source-gammas" class="level2">
 <h2 class="anchored" data-anchor-id="testing-the-same-correction-on-point-source-gammas">Testing the same correction on point source gammas</h2>
-<div class="cell" data-execution_count="23">
-<details>
+<div id="db310dc2-9dca-40a4-b314-fea9197a0588" class="cell" data-execution_count="23">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1">filename <span class="op" style="color: #5E5E5E;
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1">filename <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'dl2_gamma_20deg_180deg_off0.4deg_20220215_v0.9.1_prod5_trans_80_local_tailcut_8_4_testing.h5'</span></span>
-<span id="cb27-2"></span>
-<span id="cb27-3"><span class="kw" style="color: #003B4F;
+<span id="cb26-2"></span>
+<span id="cb26-3"><span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">def</span> analyis(filename):</span>
-<span id="cb27-4">    params <span class="op" style="color: #5E5E5E;
+<span id="cb26-4">    params <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> read_table(filename, path<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>dl2_params_lstcam_key)</span>
-<span id="cb27-5">    add_params(params)</span>
-<span id="cb27-6">    <span class="co" style="color: #5E5E5E;
+<span id="cb26-5">    add_params(params)</span>
+<span id="cb26-6">    <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># bright_events = params[(params['intensity']&gt;5000)]</span></span>
-<span id="cb27-7">    bright_events <span class="op" style="color: #5E5E5E;
+<span id="cb26-7">    bright_events <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> params[(params[<span class="st" style="color: #20794D;
 background-color: null;
@@ -1936,7 +2154,7 @@ background-color: null;
 font-style: inherit;">&gt;</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.7</span>))]</span>
-<span id="cb27-8">    bright_events_corr <span class="op" style="color: #5E5E5E;
+<span id="cb26-8">    bright_events_corr <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> patch_events(bright_events, true_focal_length<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -1949,9 +2167,9 @@ background-color: null;
 font-style: inherit;">=</span><span class="va" style="color: #111111;
 background-color: null;
 font-style: inherit;">False</span>)</span>
-<span id="cb27-9"></span>
-<span id="cb27-10"></span>
-<span id="cb27-11">    fig, axes <span class="op" style="color: #5E5E5E;
+<span id="cb26-9"></span>
+<span id="cb26-10"></span>
+<span id="cb26-11">    fig, axes <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> plt.subplots(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -1964,14 +2182,14 @@ background-color: null;
 font-style: inherit;">20</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>))</span>
-<span id="cb27-12">    </span>
-<span id="cb27-13">    plot_psf(bright_events_corr, ax<span class="op" style="color: #5E5E5E;
+<span id="cb26-12">    </span>
+<span id="cb26-13">    plot_psf(bright_events_corr, ax<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>axes[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>])</span>
-<span id="cb27-14"></span>
-<span id="cb27-15">    opt<span class="op" style="color: #5E5E5E;
+<span id="cb26-14"></span>
+<span id="cb26-15">    opt<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="bu" style="color: null;
 background-color: null;
@@ -1992,126 +2210,126 @@ background-color: null;
 font-style: inherit;">0</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.1</span>))</span>
-<span id="cb27-16">    ctaplot.plot_theta2(bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-16">    ctaplot.plot_theta2(bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_alt'</span>].quantity,</span>
-<span id="cb27-17">                       bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-17">                       bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_alt'</span>].quantity,</span>
-<span id="cb27-18">                       bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-18">                       bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_az'</span>].quantity,</span>
-<span id="cb27-19">                       bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-19">                       bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_az'</span>].quantity,</span>
-<span id="cb27-20">                        ax<span class="op" style="color: #5E5E5E;
+<span id="cb26-20">                        ax<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>axes[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>],</span>
-<span id="cb27-21">                        label<span class="op" style="color: #5E5E5E;
+<span id="cb26-21">                        label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'no bias correction'</span>,</span>
-<span id="cb27-22">                        <span class="op" style="color: #5E5E5E;
+<span id="cb26-22">                        <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">**</span>opt</span>
-<span id="cb27-23">                       )</span>
-<span id="cb27-24">    </span>
-<span id="cb27-25">    ctaplot.plot_theta2(bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-23">                       )</span>
+<span id="cb26-24">    </span>
+<span id="cb26-25">    ctaplot.plot_theta2(bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_alt'</span>].quantity,</span>
-<span id="cb27-26">                   bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-26">                   bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_alt'</span>].quantity,</span>
-<span id="cb27-27">                   bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-27">                   bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_az'</span>].quantity,</span>
-<span id="cb27-28">                   bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-28">                   bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_az'</span>].quantity,</span>
-<span id="cb27-29">                        ax<span class="op" style="color: #5E5E5E;
+<span id="cb26-29">                        ax<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>axes[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>],</span>
-<span id="cb27-30">                    label<span class="op" style="color: #5E5E5E;
+<span id="cb26-30">                    label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'bias corrected'</span>,</span>
-<span id="cb27-31">                        <span class="op" style="color: #5E5E5E;
+<span id="cb26-31">                        <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">**</span>opt</span>
-<span id="cb27-32">                   )</span>
-<span id="cb27-33">    axes[<span class="dv" style="color: #AD0000;
+<span id="cb26-32">                   )</span>
+<span id="cb26-33">    axes[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>].legend()</span>
-<span id="cb27-34">    </span>
-<span id="cb27-35">    ctaplot.plot_angular_resolution_per_energy(bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-34">    </span>
+<span id="cb26-35">    ctaplot.plot_angular_resolution_per_energy(bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_alt'</span>].quantity,</span>
-<span id="cb27-36">                                           bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-36">                                           bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_alt'</span>].quantity,</span>
-<span id="cb27-37">                                           bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-37">                                           bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_az'</span>].quantity,</span>
-<span id="cb27-38">                                           bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-38">                                           bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_az'</span>].quantity,</span>
-<span id="cb27-39">                                           bright_events[<span class="st" style="color: #20794D;
+<span id="cb26-39">                                           bright_events[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_energy'</span>].quantity,</span>
-<span id="cb27-40">                                                  ax<span class="op" style="color: #5E5E5E;
+<span id="cb26-40">                                                  ax<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>axes[<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>],</span>
-<span id="cb27-41">                                             label<span class="op" style="color: #5E5E5E;
+<span id="cb26-41">                                             label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'no bias correction'</span>,  </span>
-<span id="cb27-42">                                              )</span>
-<span id="cb27-43"></span>
-<span id="cb27-44"></span>
-<span id="cb27-45">    ctaplot.plot_angular_resolution_per_energy(bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-42">                                              )</span>
+<span id="cb26-43"></span>
+<span id="cb26-44"></span>
+<span id="cb26-45">    ctaplot.plot_angular_resolution_per_energy(bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_alt'</span>].quantity,</span>
-<span id="cb27-46">                                               bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-46">                                               bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_alt'</span>].quantity,</span>
-<span id="cb27-47">                                               bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-47">                                               bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'mc_az'</span>].quantity,</span>
-<span id="cb27-48">                                               bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-48">                                               bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_az'</span>].quantity,</span>
-<span id="cb27-49">                                               bright_events_corr[<span class="st" style="color: #20794D;
+<span id="cb26-49">                                               bright_events_corr[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'reco_energy'</span>].quantity,</span>
-<span id="cb27-50">                                               ax<span class="op" style="color: #5E5E5E;
+<span id="cb26-50">                                               ax<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span>axes[<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>],</span>
-<span id="cb27-51">                                               label<span class="op" style="color: #5E5E5E;
+<span id="cb26-51">                                               label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'bias corrected'</span>,</span>
-<span id="cb27-52">                                               <span class="co" style="color: #5E5E5E;
+<span id="cb26-52">                                               <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># ls='--'</span></span>
-<span id="cb27-53">                                              )</span>
-<span id="cb27-54"></span>
-<span id="cb27-55">    ctaplot.plot_angular_resolution_cta_requirement(<span class="st" style="color: #20794D;
+<span id="cb26-53">                                              )</span>
+<span id="cb26-54"></span>
+<span id="cb26-55">    ctaplot.plot_angular_resolution_cta_requirement(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'north'</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -2124,7 +2342,7 @@ background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>])</span>
-<span id="cb27-56">    axes[<span class="op" style="color: #5E5E5E;
+<span id="cb26-56">    axes[<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
@@ -2135,13 +2353,17 @@ background-color: null;
 font-style: inherit;">0.4</span>)</span></code></pre></div>
 </details>
 </div>
-<div class="cell" data-execution_count="24">
-<details>
+<div id="b338fcbb-141b-4b37-aa25-a6a9babb9052" class="cell" data-scrolled="false" data-execution_count="24">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1">analyis(filename)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1">analyis(filename)</span></code></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
+<div>
+<figure class="figure">
+<p><img src="https://vuillaut.github.io/labnotebook/posts/20220609_coma_aberration_bias/bias_corr_altaz_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 

@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2024-02-27_delete_indico_event.html",
       "/posts/2023-08-29_linux_rights.html",
       "/posts/2023-06-01_docker_cpu.html",
       "/posts/2023-04-18_singularity_conda.html",
